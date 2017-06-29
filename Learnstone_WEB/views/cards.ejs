@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Learnstone - Administration Console</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="_assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+	</head>
+	<body>
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="/cards">Cards</a></li>
+							<li><a href="/questions">Questions</a></li>
+							<li><a href="/stats">Stats</a></li>
+							<li><a href="/lessons">Lessons</a></li>
+							<li><a href="/glossary">Glossary</a></li>
+							<li><a href="/logout">Logout</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper style1-alt">
+						<div class="inner">
+							<h1 class="major"><center>Cards</center></h1>
+							<span class="image fit"><img src="_assets/images/lscards.jpg" alt="" /></span>
+
+							<p><center>Welcome. <br/>In this area, you can easily <b>add</b>, <b>view</b> and <b>remove</b> a card from our game, Learnstone. <br/>Please note that <b>if you want to do a large change in the game, you should directly act on the database</b>. <br/>Thanks for your support.</br/></p>
+
+
+							<!--p>
+								<div>
+									<% for(var i = 0 ; i < result.length ; i++) { %>
+
+			 							<p>ID : <%= result[i].idUsers %></p>
+			 							<p>Name : <%= result[i].Firstname %></p>
+			 							<p>Location : <%= result[i].Lastname %></p>
+
+		 							<% } %>
+							  </div>
+							</p-->
+
+
+							<hr />
+							<h2>Add a card</h2>
+							<p>Please, fill up all the <font color="#ff0000">required</font> fields in order to add a card.</p>
+
+								<section>
+									<form method="post" action="#">
+
+										<div class="field half first">
+											<label for="name">Name <font color="#ff0000">*</font></label>
+											<input type="text" name="name" id="name" maxlength="45" required/>
+										</div>
+
+										<div class="field half">
+											<label for="cost">Cost <font color="#ff0000">*</font></label>
+											<div class="select-wrapper">
+											<select name="cost" id="cost">
+												<option value="0">0</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+											</select>
+										</div>
+										</div>
+										<br/><br/><br/><br/>
+
+										<div class="field half first">
+											<label for="cardset">Card set <font color="#ff0000">*</font></label>
+											<div class="select-wrapper">
+											<select name="cardset" id="cardset">
+												<option value="Basic">Basic</option>
+												<option value="Classic">Classic</option>
+												<option value="Whispers of the Old Gods">Whispers of the Old Gods</option>
+												<option value="One Night in Karazhan">One Night in Karazhan</option>
+												<option value="Mean Streets of Gadgetzan">Mean Streets of Gadgetzan</option>
+												<option value="Journey to Un'Goro">Journey to Un'Goro</option>
+												<option value="Hall of Fame">Hall of Fame</option>
+												<option value="Naxxramas">Naxxramas</option>
+												<option value="Goblins vs Gnomes">Goblins vs Gnomes</option>
+												<option value="Blackrock Mountain">Blackrock Mountain</option>
+												<option value="The Grand Tournament">The Grand Tournament</option>
+												<option value="League of Explorers">League of Explorers</option>
+											</select>
+										</div>
+										</div>
+
+										<div class="field half">
+											<label for="type">Type <font color="#ff0000">*</font></label>
+											<div class="select-wrapper">
+											<select name="type" id="type">
+												<option value="minion">Minion</option>
+												<option value="weapon">Weapon</option>
+												<option value="spell">Spell</option>
+											</select>
+										</div>
+										</div>
+										<br/><br/><br/><br/>
+
+										<div class="field half first">
+											<label for="attack">Attack</label>
+											<div class="select-wrapper">
+											<select name="attack" id="attack">
+												<option value="">Not defined</option>
+												<option value="0">0</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+											</select>
+										</div>
+										</div>
+
+
+										<div class="field half">
+											<label for="health">Health </label>
+											<div class="select-wrapper">
+											<select name="health" id="health">
+												<option value="">Not defined</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+											</select>
+										</div>
+										</div>
+										<br/><br/><br/><br/>
+
+										<div class="field half first">
+											<label for="rarity">Rarity <font color="#ff0000">*</font></label>
+											<div class="select-wrapper">
+											<select name="rarity" id="rarity">
+												<option value="Free">Free</option>
+												<option value="Common">Common</option>
+												<option value="Rare">Rare</option>
+												<option value="Epic">Epic</option>
+												<option value="Legendary">Legendary</option>
+											</select>
+										</div>
+										</div>
+
+										<div class="field half">
+											<label for="class">Class </label>
+											<div class="select-wrapper">
+											<select name="class" id="class">
+												<option value="">Not defined</option>
+												<option value="Druid">Druid</option>
+												<option value="Hunter">Hunter</option>
+												<option value="Mage">Mage</option>
+												<option value="Paladin">Paladin</option>
+												<option value="Priest">Priest</option>
+												<option value="Rogue">Rogue</option>
+												<option value="Shaman">Shaman</option>
+												<option value="Warlock">Warlock</option>
+												<option value="Warrior">Warrior</option>
+											</select>
+										</div>
+										</div>
+										<br/><br/><br/><br/>
+
+										<div class="field half first">
+											<label for="durability">Durability</label>
+											<div class="select-wrapper">
+											<select name="durability" id="durability">
+												<option value="">Not defined</option>
+												<option value="0">0</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+											</select>
+										</div>
+										</div>
+
+										<div class="field half">
+											<label for="race">Race</label>
+											<div class="select-wrapper">
+											<select name="race" id="race">
+												<option value="">Not defined</option>
+												<option value="totem">Totem</option>
+												<option value="dragon">Dragon</option>
+												<option value="beast">Beast</option>
+												<option value="demon">Demon</option>
+												<option value="elemental">Elemental</option>
+												<option value="mech">Mech</option>
+												<option value="murloc">Murloc</option>
+												<option value="pirate">Pirate</option>
+											</select>
+										</div>
+										</div>
+										<br/><br/><br/><br/>
+
+										<div class="field half first">
+											<label for="artist">Artist </label>
+											<input type="text" name="artist" id="artist" maxlength="45"/>
+										</div>
+
+
+										<div class="field half">
+											<label for="url">URL <font color="#ff0000">*</font></label>
+											<input type="text" name="url" id="url" maxlength="2048" required/>
+										</div>
+										<br/><br/><br/><br/>
+
+										<div class="field">
+											<label for="description">Description </label>
+											<input type="text" name="description" id="description" maxlength="255"/>
+										</div>
+										<br/>
+
+
+										<ul class="actions">
+											<li><input type="submit" class="button scrolly" value="ADD A CARD" id="submit"></li>
+										</ul>
+
+
+									</form>
+								</section>
+							</div>
+
+					</section>
+				</center>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; ESGI. All rights reserved.</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
