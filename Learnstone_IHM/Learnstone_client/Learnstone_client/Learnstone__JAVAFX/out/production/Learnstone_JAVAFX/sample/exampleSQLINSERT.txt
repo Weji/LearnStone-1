@@ -1,1 +1,0 @@
-INSERT INTO `users` (`IdUsers`, `Firstname`, `Lastname`, `NbGoodAnswer`, `NbQuestionAnswered`, `IdRefRole`, `username`, `password`, `isadmin`, `MailAdresse`) VALUES (NULL, 'Louis', 'Mantopoulos', NULL, NULL, '2', 'mrfrizz', 'mrfrizz', '0', 'Louis@gmail.com');
