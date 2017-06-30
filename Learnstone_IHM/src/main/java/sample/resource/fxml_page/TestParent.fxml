@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane id="mainBorderPane" fx:id="borderPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="1020.0" prefWidth="1920.0" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AtelierTest.MenuTestParent">
+   <effect>
+      <InnerShadow />
+   </effect>
+   <bottom>
+      <AnchorPane id="bottombarmenu" prefHeight="48.0" prefWidth="1920.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <top>
+      <AnchorPane id="anchorPaneTop" prefHeight="108.0" prefWidth="1926.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="104.0" fitWidth="112.0" layoutX="-2.0" layoutY="-21.0" pickOnBounds="true" styleClass="button" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
+               <image>
+                  <Image url="@../images/unnamed.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label id="labelTopUserName" ellipsisString="" layoutX="127.0" layoutY="5.0" prefHeight="108.0" prefWidth="822.0" text="&lt;PLAYERNAME&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="978.0" AnchorPane.topAnchor="0.0" />
+            <Button fx:id="buttonDeconnection" layoutX="1754.0" layoutY="37.0" mnemonicParsing="false" text="Se déconnecter" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane id="anchorPaneLeft" fx:id="anchorPaneLeft" prefHeight="1200.0" prefWidth="266.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox id="vboxMenuLeft" fx:id="vboxLeft" layoutX="5.0" layoutY="56.0" onMouseClicked="#SwitchSceneTo" prefHeight="805.0" prefWidth="258.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="55.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <AnchorPane prefHeight="82.0" prefWidth="244.0">
+                     <children>
+                        <Label id="labelWelcome" prefHeight="82.0" prefWidth="258.0" text="Accueil" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="31.0" layoutY="31.0" prefHeight="82.0" prefWidth="244.0">
+                     <children>
+                        <Label id="labelPresentationOfTheGame" prefHeight="82.0" prefWidth="258.0" text="Présentation du jeu" textAlignment="JUSTIFY" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="31.0" layoutY="153.0" prefHeight="82.0" prefWidth="244.0">
+                     <children>
+                        <Label id="labelCards" prefHeight="82.0" prefWidth="258.0" text="Cartes" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="31.0" layoutY="275.0" prefHeight="82.0" prefWidth="244.0">
+                     <children>
+                        <Label id="labelLessons" layoutY="4.0" prefHeight="82.0" prefWidth="258.0" text="Bibliothèque" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="31.0" layoutY="397.0" prefHeight="82.0" prefWidth="244.0">
+                     <children>
+                        <Label id="labelQuizz" prefHeight="82.0" prefWidth="258.0" text="Leçons" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="31.0" layoutY="519.0" prefHeight="82.0" prefWidth="244.0">
+                     <children>
+                        <Label id="labelStatisticOfThePlayer" prefHeight="82.0" prefWidth="258.0" text="Quizz" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="82.0" prefWidth="244.0">
+                     <children>
+                        <Label id="labelStreamTwitch" centerShape="false" layoutY="-8.0" prefHeight="82.0" prefWidth="258.0" text="Statistiques du joueur" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="82.0" prefWidth="244.0">
+                     <children>
+                        <Label id="labelStreamTwitch" centerShape="false" layoutY="-8.0" prefHeight="82.0" prefWidth="256.0" text="Stream Twitch.tv" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
