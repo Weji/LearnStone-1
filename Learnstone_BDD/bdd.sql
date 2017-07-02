@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Sam 24 Juin 2017 à 16:54
--- Version du serveur :  5.6.33
--- Version de PHP :  7.0.12
+-- Généré le :  Dim 02 Juillet 2017 à 12:45
+-- Version du serveur :  5.6.35
+-- Version de PHP :  7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,25 +17,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Answers`
+-- Structure de la table `Answer`
 --
 
-CREATE TABLE `Answers` (
-  `IdAnswers` int(11) NOT NULL,
-  `IdUsers` int(11) NOT NULL,
-  `IdQuestions` int(11) NOT NULL,
+CREATE TABLE `Answer` (
+  `IdAnswer` int(11) NOT NULL,
   `AnswerText` text NOT NULL,
-  `AnswerNumeric` int(11) NOT NULL
+  `IsCorrectAnswer` tinyint(1) NOT NULL,
+  `IdQuestion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Cards`
+-- Structure de la table `Card`
 --
 
-CREATE TABLE `Cards` (
-  `IdCards` int(11) NOT NULL,
+CREATE TABLE `Card` (
+  `IdCard` int(11) NOT NULL,
   `Name` varchar(45) NOT NULL,
   `Text` text NOT NULL,
   `Attack` int(11) NOT NULL,
@@ -47,28 +46,42 @@ CREATE TABLE `Cards` (
   `IdRefCardsSet` int(11) NOT NULL,
   `IdRefType` int(11) NOT NULL,
   `IdRefRace` int(11) NOT NULL,
-  `IdRefRarity` int(11) NOT NULL
+  `IdRefRarity` int(11) NOT NULL,
+  `Img` varchar(255) DEFAULT NULL,
+  `ImgGold` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `KeyWords`
+-- Structure de la table `CardKeyWord`
 --
 
-CREATE TABLE `KeyWords` (
-  `IdKeyWords` int(11) NOT NULL,
-  `LblKeyWords` int(11) NOT NULL
+CREATE TABLE `CardKeyWord` (
+  `IdRefCardKeyWord` int(11) NOT NULL,
+  `IdKeyWord` int(11) NOT NULL,
+  `IdCard` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Lessons`
+-- Structure de la table `KeyWord`
 --
 
-CREATE TABLE `Lessons` (
-  `IdLessons` int(11) NOT NULL,
+CREATE TABLE `KeyWord` (
+  `IdKeyWord` int(11) NOT NULL,
+  `LblKeyWord` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Lesson`
+--
+
+CREATE TABLE `Lesson` (
+  `IdLesson` int(11) NOT NULL,
   `NumberLesson` int(11) NOT NULL,
   `Text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -76,27 +89,60 @@ CREATE TABLE `Lessons` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Questions`
+-- Structure de la table `Person`
 --
 
-CREATE TABLE `Questions` (
-  `IdQuestions` int(11) NOT NULL,
-  `QuestionText` text NOT NULL,
-  `NbGoodAnswer` int(11) NOT NULL,
-  `NbUse` int(11) NOT NULL,
-  `NbResult` int(11) NOT NULL
+CREATE TABLE `Person` (
+  `IdPerson` int(4) NOT NULL,
+  `Firstname` varchar(255) NOT NULL,
+  `Lastname` varchar(255) NOT NULL,
+  `NbGoodAnswer` int(4) NOT NULL,
+  `NbQuestionAnswered` int(4) NOT NULL,
+  `IdRefRole` int(11) NOT NULL,
+  `Username` int(11) NOT NULL,
+  `Password` int(11) NOT NULL,
+  `Mail` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `RefCardsKeyWords`
+-- Structure de la table `PersonLesson`
 --
 
-CREATE TABLE `RefCardsKeyWords` (
-  `IdRefCardsKeyWords` int(11) NOT NULL,
-  `IdKeyWords` int(11) NOT NULL,
-  `IdCards` int(11) NOT NULL
+CREATE TABLE `PersonLesson` (
+  `IdPersonLesson` int(11) NOT NULL,
+  `IdPerson` int(11) NOT NULL,
+  `IdLesson` int(11) NOT NULL,
+  `DateRead` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Question`
+--
+
+CREATE TABLE `Question` (
+  `IdQuestion` int(11) NOT NULL,
+  `QuestionText` text NOT NULL,
+  `NbUse` int(11) NOT NULL,
+  `NbResult` int(11) NOT NULL,
+  `Img` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `QuestionAnswered`
+--
+
+CREATE TABLE `QuestionAnswered` (
+  `IdQuestionAnswered` int(11) NOT NULL,
+  `IdPerson` int(11) NOT NULL,
+  `IdQuestion` int(11) NOT NULL,
+  `IsAnswerWell` tinyint(1) NOT NULL,
+  `DateAnswered` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -165,81 +211,76 @@ CREATE TABLE `RefType` (
   `LblType` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Structure de la table `RefUsersLessons`
---
-
-CREATE TABLE `RefUsersLessons` (
-  `IdRefUsersLessons` int(11) NOT NULL,
-  `IdUsers` int(11) NOT NULL,
-  `IdLessons` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `Users`
---
-
-CREATE TABLE `Users` (
-  `IdUsers` int(4) NOT NULL,
-  `Firstname` varchar(255) NOT NULL,
-  `Lastname` varchar(255) NOT NULL,
-  `NbGoodAnswer` int(4) NOT NULL,
-  `NbQuestionAnswered` int(4) NOT NULL,
-  `IdRefRole` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Index pour les tables exportées
 --
 
 --
--- Index pour la table `Answers`
+-- Index pour la table `Answer`
 --
-ALTER TABLE `Answers`
-  ADD PRIMARY KEY (`IdAnswers`),
-  ADD KEY `FK_Answers_Users` (`IdUsers`),
-  ADD KEY `FK_Answers_Questions` (`IdQuestions`);
+ALTER TABLE `Answer`
+  ADD PRIMARY KEY (`IdAnswer`),
+  ADD KEY `FK_Answer_Question` (`IdQuestion`);
 
 --
--- Index pour la table `Cards`
+-- Index pour la table `Card`
 --
-ALTER TABLE `Cards`
-  ADD PRIMARY KEY (`IdCards`),
-  ADD KEY `FK_Cards_RefClass` (`IdRefClass`),
-  ADD KEY `FK_Cards_RefCardsSet` (`IdRefCardsSet`),
-  ADD KEY `FK_Cards_RefRace` (`IdRefRace`),
-  ADD KEY `FK_Cards_RefRarity` (`IdRefRarity`),
-  ADD KEY `FK_Cards_RefType` (`IdRefType`);
+ALTER TABLE `Card`
+  ADD PRIMARY KEY (`IdCard`),
+  ADD KEY `FK_Card_RefClass` (`IdRefClass`),
+  ADD KEY `FK_Card_RefCardsSet` (`IdRefCardsSet`),
+  ADD KEY `FK_Card_RefType` (`IdRefType`),
+  ADD KEY `FK_Card_RefRace` (`IdRefRace`),
+  ADD KEY `FK_Card_RefRarity` (`IdRefRarity`);
 
 --
--- Index pour la table `KeyWords`
+-- Index pour la table `CardKeyWord`
 --
-ALTER TABLE `KeyWords`
-  ADD PRIMARY KEY (`IdKeyWords`);
+ALTER TABLE `CardKeyWord`
+  ADD PRIMARY KEY (`IdRefCardKeyWord`),
+  ADD KEY `FK_CardKeyWord_Card` (`IdCard`),
+  ADD KEY `FK_CardKeyWord_KeyWord` (`IdKeyWord`);
 
 --
--- Index pour la table `Lessons`
+-- Index pour la table `KeyWord`
 --
-ALTER TABLE `Lessons`
-  ADD PRIMARY KEY (`IdLessons`);
+ALTER TABLE `KeyWord`
+  ADD PRIMARY KEY (`IdKeyWord`);
 
 --
--- Index pour la table `Questions`
+-- Index pour la table `Lesson`
 --
-ALTER TABLE `Questions`
-  ADD PRIMARY KEY (`IdQuestions`);
+ALTER TABLE `Lesson`
+  ADD PRIMARY KEY (`IdLesson`);
 
 --
--- Index pour la table `RefCardsKeyWords`
+-- Index pour la table `Person`
 --
-ALTER TABLE `RefCardsKeyWords`
-  ADD PRIMARY KEY (`IdRefCardsKeyWords`),
-  ADD KEY `FK_RefCardsKeyWords_Cards` (`IdCards`),
-  ADD KEY `FK_RefCardsKeyWords_KeyWords` (`IdKeyWords`);
+ALTER TABLE `Person`
+  ADD PRIMARY KEY (`IdPerson`),
+  ADD KEY `FK_Person_RefRole` (`IdRefRole`);
+
+--
+-- Index pour la table `PersonLesson`
+--
+ALTER TABLE `PersonLesson`
+  ADD PRIMARY KEY (`IdPersonLesson`),
+  ADD KEY `FK_PersonLesson_Person` (`IdPerson`),
+  ADD KEY `FK_PersonLesson_Lesson` (`IdLesson`);
+
+--
+-- Index pour la table `Question`
+--
+ALTER TABLE `Question`
+  ADD PRIMARY KEY (`IdQuestion`);
+
+--
+-- Index pour la table `QuestionAnswered`
+--
+ALTER TABLE `QuestionAnswered`
+  ADD PRIMARY KEY (`IdQuestionAnswered`),
+  ADD KEY `FK_QuestionAnswered_Person` (`IdPerson`),
+  ADD KEY `FK_QuestionAnswered_Question` (`IdQuestion`);
 
 --
 -- Index pour la table `RefCardsSet`
@@ -278,54 +319,54 @@ ALTER TABLE `RefType`
   ADD PRIMARY KEY (`IdRefType`);
 
 --
--- Index pour la table `RefUsersLessons`
---
-ALTER TABLE `RefUsersLessons`
-  ADD PRIMARY KEY (`IdRefUsersLessons`),
-  ADD KEY `FK_RefUsersLessons_Users` (`IdUsers`),
-  ADD KEY `FK_RefUsersLessons_Lessons` (`IdLessons`);
-
---
--- Index pour la table `Users`
---
-ALTER TABLE `Users`
-  ADD PRIMARY KEY (`IdUsers`),
-  ADD KEY `FK_Users_RefRole` (`IdRefRole`);
-
---
 -- AUTO_INCREMENT pour les tables exportées
 --
 
 --
--- AUTO_INCREMENT pour la table `Answers`
+-- AUTO_INCREMENT pour la table `Answer`
 --
-ALTER TABLE `Answers`
-  MODIFY `IdAnswers` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Answer`
+  MODIFY `IdAnswer` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `Cards`
+-- AUTO_INCREMENT pour la table `Card`
 --
-ALTER TABLE `Cards`
-  MODIFY `IdCards` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Card`
+  MODIFY `IdCard` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `KeyWords`
+-- AUTO_INCREMENT pour la table `CardKeyWord`
 --
-ALTER TABLE `KeyWords`
-  MODIFY `IdKeyWords` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `CardKeyWord`
+  MODIFY `IdRefCardKeyWord` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `Lessons`
+-- AUTO_INCREMENT pour la table `KeyWord`
 --
-ALTER TABLE `Lessons`
-  MODIFY `IdLessons` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `KeyWord`
+  MODIFY `IdKeyWord` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `Questions`
+-- AUTO_INCREMENT pour la table `Lesson`
 --
-ALTER TABLE `Questions`
-  MODIFY `IdQuestions` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Lesson`
+  MODIFY `IdLesson` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `RefCardsKeyWords`
+-- AUTO_INCREMENT pour la table `Person`
 --
-ALTER TABLE `RefCardsKeyWords`
-  MODIFY `IdRefCardsKeyWords` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Person`
+  MODIFY `IdPerson` int(4) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `PersonLesson`
+--
+ALTER TABLE `PersonLesson`
+  MODIFY `IdPersonLesson` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `Question`
+--
+ALTER TABLE `Question`
+  MODIFY `IdQuestion` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `QuestionAnswered`
+--
+ALTER TABLE `QuestionAnswered`
+  MODIFY `IdQuestionAnswered` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `RefCardsSet`
 --
@@ -357,52 +398,48 @@ ALTER TABLE `RefRole`
 ALTER TABLE `RefType`
   MODIFY `IdRefType` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `RefUsersLessons`
---
-ALTER TABLE `RefUsersLessons`
-  MODIFY `IdRefUsersLessons` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `Users`
---
-ALTER TABLE `Users`
-  MODIFY `IdUsers` int(4) NOT NULL AUTO_INCREMENT;
---
 -- Contraintes pour les tables exportées
 --
 
 --
--- Contraintes pour la table `Answers`
+-- Contraintes pour la table `Answer`
 --
-ALTER TABLE `Answers`
-  ADD CONSTRAINT `FK_Answers_Questions` FOREIGN KEY (`IdQuestions`) REFERENCES `Questions` (`IdQuestions`),
-  ADD CONSTRAINT `FK_Answers_Users` FOREIGN KEY (`IdUsers`) REFERENCES `Users` (`IdUsers`);
+ALTER TABLE `Answer`
+  ADD CONSTRAINT `FK_Answer_Question` FOREIGN KEY (`IdQuestion`) REFERENCES `Question` (`IdQuestion`);
 
 --
--- Contraintes pour la table `Cards`
+-- Contraintes pour la table `Card`
 --
-ALTER TABLE `Cards`
-  ADD CONSTRAINT `FK_Cards_RefCardsSet` FOREIGN KEY (`IdRefCardsSet`) REFERENCES `RefCardsSet` (`IdRefCardsSet`),
-  ADD CONSTRAINT `FK_Cards_RefClass` FOREIGN KEY (`IdRefClass`) REFERENCES `RefClass` (`IdRefClass`),
-  ADD CONSTRAINT `FK_Cards_RefRace` FOREIGN KEY (`IdRefRace`) REFERENCES `RefRace` (`IdRefRace`),
-  ADD CONSTRAINT `FK_Cards_RefRarity` FOREIGN KEY (`IdRefRarity`) REFERENCES `RefRarity` (`IdRefRarity`),
-  ADD CONSTRAINT `FK_Cards_RefType` FOREIGN KEY (`IdRefType`) REFERENCES `RefType` (`IdRefType`);
+ALTER TABLE `Card`
+  ADD CONSTRAINT `FK_Card_RefCardsSet` FOREIGN KEY (`IdRefCardsSet`) REFERENCES `RefCardsSet` (`IdRefCardsSet`),
+  ADD CONSTRAINT `FK_Card_RefClass` FOREIGN KEY (`IdRefClass`) REFERENCES `RefClass` (`IdRefClass`),
+  ADD CONSTRAINT `FK_Card_RefRace` FOREIGN KEY (`IdRefRace`) REFERENCES `RefRace` (`IdRefRace`),
+  ADD CONSTRAINT `FK_Card_RefRarity` FOREIGN KEY (`IdRefRarity`) REFERENCES `RefRarity` (`IdRefRarity`),
+  ADD CONSTRAINT `FK_Card_RefType` FOREIGN KEY (`IdRefType`) REFERENCES `RefType` (`IdRefType`);
 
 --
--- Contraintes pour la table `RefCardsKeyWords`
+-- Contraintes pour la table `CardKeyWord`
 --
-ALTER TABLE `RefCardsKeyWords`
-  ADD CONSTRAINT `FK_RefCardsKeyWords_Cards` FOREIGN KEY (`IdCards`) REFERENCES `Cards` (`IdCards`),
-  ADD CONSTRAINT `FK_RefCardsKeyWords_KeyWords` FOREIGN KEY (`IdKeyWords`) REFERENCES `KeyWords` (`IdKeyWords`);
+ALTER TABLE `CardKeyWord`
+  ADD CONSTRAINT `FK_CardKeyWord_Card` FOREIGN KEY (`IdCard`) REFERENCES `Card` (`IdCard`),
+  ADD CONSTRAINT `FK_CardKeyWord_KeyWord` FOREIGN KEY (`IdKeyWord`) REFERENCES `KeyWord` (`IdKeyWord`);
 
 --
--- Contraintes pour la table `RefUsersLessons`
+-- Contraintes pour la table `Person`
 --
-ALTER TABLE `RefUsersLessons`
-  ADD CONSTRAINT `FK_RefUsersLessons_Lessons` FOREIGN KEY (`IdLessons`) REFERENCES `Lessons` (`IdLessons`),
-  ADD CONSTRAINT `FK_RefUsersLessons_Users` FOREIGN KEY (`IdUsers`) REFERENCES `Users` (`IdUsers`);
+ALTER TABLE `Person`
+  ADD CONSTRAINT `FK_Person_RefRole` FOREIGN KEY (`IdRefRole`) REFERENCES `RefRole` (`IdRefRole`);
 
 --
--- Contraintes pour la table `Users`
+-- Contraintes pour la table `PersonLesson`
 --
-ALTER TABLE `Users`
-  ADD CONSTRAINT `FK_Users_RefRole` FOREIGN KEY (`IdRefRole`) REFERENCES `RefRole` (`IdRefRole`);
+ALTER TABLE `PersonLesson`
+  ADD CONSTRAINT `FK_PersonLesson_Lesson` FOREIGN KEY (`IdLesson`) REFERENCES `Lesson` (`IdLesson`),
+  ADD CONSTRAINT `FK_PersonLesson_Person` FOREIGN KEY (`IdPerson`) REFERENCES `Person` (`IdPerson`);
+
+--
+-- Contraintes pour la table `QuestionAnswered`
+--
+ALTER TABLE `QuestionAnswered`
+  ADD CONSTRAINT `FK_QuestionAnswered_Person` FOREIGN KEY (`IdPerson`) REFERENCES `Person` (`IdPerson`),
+  ADD CONSTRAINT `FK_QuestionAnswered_Question` FOREIGN KEY (`IdQuestion`) REFERENCES `Question` (`IdQuestion`);
