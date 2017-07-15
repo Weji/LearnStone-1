@@ -1,126 +1,97 @@
+
 var express = require('express');
 var session = require('express-session');
-var mysql      = require('mysql');
+var mysql = require('mysql');
 var bodyParser = require('body-parser');
-var sess;
-var result;
-
-var router = express.Router();
 
 var connection = require("../connection");
-
+var router = express.Router();
 
 
 router.get('/', function(req, res) {
 
-  sess = req.session;
-  if(sess.username) {
+    if (!req.session.username) { res.redirect('/'); }
+    else {
 
-connection.query(
+      connection.query(
 
-  'SELECT * ' +
-  'FROM Card a ' +
-  'INNER JOIN refclass b ON a.IdRefClass = b.IdRefClass ' +
-  'INNER JOIN Refcardsset c ON a.IdRefCardsSet = c.IdRefCardsSet ' +
-  'INNER JOIN reftype d ON a.IdRefType = d.IdRefType ' +
-  'INNER JOIN refrarity e ON a.IdRefRarity = e.IdRefRarity ' +
-  'ORDER BY a.Name',
+       'SELECT * ' +
+       'FROM Card a ' +
+       'LEFT OUTER JOIN refclass b ON a.idRefClass = b.idRefClass ' +
+       'INNER JOIN refcardsset c ON a.idRefCardsSet = c.idRefCardsSet ' +
+       'INNER JOIN reftype d ON a.idRefType = d.idRefType ' +
+       'INNER JOIN refrarity e ON a.idRefRarity = e.idRefRarity ' +
+       'ORDER BY a.name',
 
+         function(err, rows, fields) {
 
+              if (!err){
+                   let result;
+                   for (var i = 0; i < rows.length; i++) {result = rows;};
+                   res.render('cards', {result: result});
+                 }
+                 else{
+                   res.render('error', {err: err});
+                 }
+              });
 
-
-  function(err, rows, fields) {
-
-       if (!err){
-            for (var i = 0; i < rows.length; i++) {result = rows;};
-            res.render('cards', {result: result});
-          }
-          else{
-            console.log(err);
-            //res.redirect('/generic');
-          }
-       });
-
-
-
-     }
-   else {
-       res.redirect('/');
-   }
+      }
 
 });
 
 router.post('/', function(req, res) {
-   //res.sendFile(path.join(__dirname + '/views/generic.html'));
-sess = req.session;
-let atk;
-if (req.body.attack == "") {atk = null ;} else {atk = req.body.attack;}
 
-var user = {
-        Name: req.body.name,
-        Text: req.body.description,
-        Attack: atk,
-        Health: req.body.health,
-        ManaCost: req.body.cost,
-        Artist: req.body.artist,
-        Durability: req.body.durability,
-        IdRefClass: req.body.class,
-        IdRefCardsSet: req.body.cardset,
-        IdRefType: req.body.type,
-        IdRefRace: req.body.race,
-        IdRefRarity: req.body.rarity,
-        Img: "ZZ",
-        ImgGold: "Z"
-    };
+  if (!req.session.username) { res.redirect('/'); }
+  else {
 
-var sql = "INSERT INTO Card SET ?";
-   if(sess.username) {
-     connection.query(sql, user, function(err, result) {
+      if (req.body.attack == "") {req.body.attack = null ;}
+      if (req.body.class == "") {req.body.class = null ;}
+      if (req.body.race == "") {req.body.race = null ;}
+      if (req.body.health == "") {req.body.health = null ;}
+      if (req.body.durability == "") {req.body.durability = null ;}
 
-            if (!err){
+      var icard = {
+              name: req.body.name,
+              text: req.body.description,
+              attack: req.body.attack,
+              health: req.body.health,
+              manaCost: req.body.cost,
+              artist: req.body.artist,
+              durability: req.body.durability,
+              idRefClass: req.body.class,
+              idRefCardsSet: req.body.cardset,
+              idRefType: req.body.type,
+              idRefRace: req.body.race,
+              idRefRarity: req.body.rarity,
+              img: req.body.url,
+              imgGold: req.body.url
+          };
 
-                 res.redirect('/cards');
-               }
-               else{
-                 console.log(err);
-                 //res.redirect('/generic');
-               }
-            });
-   }
-   else {
-       res.redirect('/');
+      connection.query('INSERT INTO Card SET ?', icard, function(err, result) {
+
+            if (!err) { res.redirect('/cards'); }
+            else { res.render('error', {err: err}); }
+
+      });
+
    }
 
 });
 
 router.post('/delete', function(req, res) {
-   //res.sendFile(path.join(__dirname + '/views/generic.html'));
-   var user = {
-           IdCard: req.body.id
-       };
 
-   var sql = "DELETE FROM Card WHERE ?";
+  if(!req.session.username) { res.redirect('/'); }
+  else {
 
-sess = req.session;
+    connection.query('DELETE FROM Card WHERE idCard = ?', req.body.id, function(err, result) {
 
-   if(sess.username) {
-     connection.query(sql, user, function(err, result) {
+      if (!err) { res.redirect('/cards'); }
+      else { res.render('error', {err: err}); }
 
-            if (!err){
+    });
 
-                 res.redirect('/cards');
-               }
-               else{
-                 console.log(err);
-                 //res.redirect('/generic');
-               }
-            });
-   }
-   else {
-       res.redirect('/');
-   }
+  }
 
 });
-
 
 module.exports = router;

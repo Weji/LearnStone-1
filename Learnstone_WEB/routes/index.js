@@ -10,7 +10,7 @@ var router = express.Router();
 
 router.get('/',function(req,res){
 
-    if(req.session.username) { res.redirect('/cards'); }
+    if (req.session.username) { res.redirect('/cards'); }
     else { res.render('index'); }
 
 });
@@ -19,22 +19,18 @@ router.post('/',function(req,res){
 
     connection.query('SELECT * FROM Person', function(err, rows, fields) {
 
-          if (!err) {
+      if (err) { res.render('error', {err: err}); }
+      else {
 
-                for (var i = 0; i < rows.length; i++){
+          for (var i = 0; i < rows.length; i++){
 
-                     if (rows[i].Username === req.body.username && rows[i].Password === req.body.password && rows[i].IdRefRole === 2 ){
-                       req.session.username = req.body.username;
-                     }
+               if (rows[i].username === req.body.username && rows[i].password === req.body.password && rows[i].idRefRole === 2 ){
+                 req.session.username = req.body.username;
+               }
 
-                };
+            };
 
-                res.redirect('/cards');
-
-          }
-          else {
-
-            res.render('error', {err: err});
+          res.redirect('/cards');
 
           }
 

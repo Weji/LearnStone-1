@@ -123,7 +123,7 @@
 											<label for="class">Class </label>
 											<div class="select-wrapper">
 											<select name="class" id="class">
-												<option value="10">Not defined</option>
+												<option value="">Not defined</option>
 												<option value="9">Druid</option>
 												<option value="5">Hunter</option>
 												<option value="1">Mage</option>
@@ -147,7 +147,7 @@
 											<label for="race">Race</label>
 											<div class="select-wrapper">
 											<select name="race" id="race">
-												<option value="9">Not defined</option>
+												<option value="">Not defined</option>
 												<option value="1">Totem</option>
 												<option value="2">Dragon</option>
 												<option value="3">Beast</option>
@@ -174,8 +174,8 @@
 										<br/><br/><br/><br/>
 
 										<div class="field">
-											<label for="description">Description </label>
-											<input type="text" name="description" id="description" maxlength="255"/>
+											<label for="description">Description <font color="#ff0000">*</font></label>
+											<input type="text" name="description" id="description" maxlength="255" required/>
 										</div>
 										<br/>
 
@@ -214,16 +214,16 @@
 													<tbody>
 														<% for(var i = 0 ; i < result.length ; i++) { %>
 															<tr>
-																<td><%= result[i].IdCard %></td>
-																<td><%= result[i].Name %></td>
-																<td><%= result[i].Attack %></td>
-																<td><%= result[i].Health %></td>
-																<td><%= result[i].ManaCost %></td>
-																<td><%= result[i].Artist %></td>
-																<td><%= result[i].LblClass %></td>
-																<td><%= result[i].LblCardsSet %></td>
-																<td><%= result[i].LblType %></td>
-																<td><%= result[i].LblRarity %></td>
+																<td><%= result[i].idCard %></td>
+																<td><%= result[i].name %></td>
+																<td><%= result[i].attack %></td>
+																<td><%= result[i].health %></td>
+																<td><%= result[i].manaCost %></td>
+																<td><%= result[i].artist %></td>
+																<td><%= result[i].lblClass %></td>
+																<td><%= result[i].lblCardsSet %></td>
+																<td><%= result[i].lblType %></td>
+																<td><%= result[i].lblRarity %></td>
 
 															</tr>
 
