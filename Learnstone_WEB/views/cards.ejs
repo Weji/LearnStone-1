@@ -44,25 +44,12 @@
 							<p><center>Welcome. <br/>In this area, you can easily <b>add</b>, <b>view</b> and <b>remove</b> a card from our game, Learnstone. <br/>Please note that <b>if you want to do a large change in the game, you should directly act on the database</b>. <br/>Thanks for your support.</br/></p>
 
 
-							<!--p>
-								<div>
-									<% for(var i = 0 ; i < result.length ; i++) { %>
-
-			 							<p>ID : <%= result[i].idUsers %></p>
-			 							<p>Name : <%= result[i].Firstname %></p>
-			 							<p>Location : <%= result[i].Lastname %></p>
-
-		 							<% } %>
-							  </div>
-							</p-->
-
-
 							<hr />
 							<h2>Add a card</h2>
 							<p>Please, fill up all the <font color="#ff0000">required</font> fields in order to add a card.</p>
 
 								<section>
-									<form method="post" action="#">
+									<form method="post" action="/cards">
 
 										<div class="field half first">
 											<label for="name">Name <font color="#ff0000">*</font></label>
@@ -71,21 +58,7 @@
 
 										<div class="field half">
 											<label for="cost">Cost <font color="#ff0000">*</font></label>
-											<div class="select-wrapper">
-											<select name="cost" id="cost">
-												<option value="0">0</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="6">6</option>
-												<option value="7">7</option>
-												<option value="8">8</option>
-												<option value="9">9</option>
-												<option value="10">10</option>
-											</select>
-										</div>
+											<input type="number" name="cost" id="cost" required/>
 										</div>
 										<br/><br/><br/><br/>
 
@@ -93,18 +66,18 @@
 											<label for="cardset">Card set <font color="#ff0000">*</font></label>
 											<div class="select-wrapper">
 											<select name="cardset" id="cardset">
-												<option value="Basic">Basic</option>
-												<option value="Classic">Classic</option>
-												<option value="Whispers of the Old Gods">Whispers of the Old Gods</option>
-												<option value="One Night in Karazhan">One Night in Karazhan</option>
-												<option value="Mean Streets of Gadgetzan">Mean Streets of Gadgetzan</option>
-												<option value="Journey to Un'Goro">Journey to Un'Goro</option>
-												<option value="Hall of Fame">Hall of Fame</option>
-												<option value="Naxxramas">Naxxramas</option>
-												<option value="Goblins vs Gnomes">Goblins vs Gnomes</option>
-												<option value="Blackrock Mountain">Blackrock Mountain</option>
-												<option value="The Grand Tournament">The Grand Tournament</option>
-												<option value="League of Explorers">League of Explorers</option>
+												<option value="1">Basic</option>
+												<option value="2">Classic</option>
+												<option value="3">Whispers of the Old Gods</option>
+												<option value="4">One Night in Karazhan</option>
+												<option value="5">Mean Streets of Gadgetzan</option>
+												<option value="6">Journey to Un'Goro</option>
+												<option value="7">Hall of Fame</option>
+												<option value="8">Naxxramas</option>
+												<option value="9">Goblins vs Gnomes</option>
+												<option value="10">Blackrock Mountain</option>
+												<option value="11">The Grand Tournament</option>
+												<option value="12">League of Explorers</option>
 											</select>
 										</div>
 										</div>
@@ -113,9 +86,9 @@
 											<label for="type">Type <font color="#ff0000">*</font></label>
 											<div class="select-wrapper">
 											<select name="type" id="type">
-												<option value="minion">Minion</option>
-												<option value="weapon">Weapon</option>
-												<option value="spell">Spell</option>
+												<option value="1">Minion</option>
+												<option value="2">Weapon</option>
+												<option value="3">Spell</option>
 											</select>
 										</div>
 										</div>
@@ -123,48 +96,13 @@
 
 										<div class="field half first">
 											<label for="attack">Attack</label>
-											<div class="select-wrapper">
-											<select name="attack" id="attack">
-												<option value="">Not defined</option>
-												<option value="0">0</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="6">6</option>
-												<option value="7">7</option>
-												<option value="8">8</option>
-												<option value="9">9</option>
-												<option value="10">10</option>
-												<option value="11">11</option>
-												<option value="12">12</option>
-											</select>
-										</div>
+											<input type="number" name="attack" id="attack"/>
 										</div>
 
 
 										<div class="field half">
 											<label for="health">Health </label>
-											<div class="select-wrapper">
-											<select name="health" id="health">
-												<option value="">Not defined</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="6">6</option>
-												<option value="7">7</option>
-												<option value="8">8</option>
-												<option value="9">9</option>
-												<option value="10">10</option>
-												<option value="11">11</option>
-												<option value="12">12</option>
-												<option value="13">13</option>
-												<option value="14">14</option>
-											</select>
-										</div>
+											<input type="number" name="health" id="health"/>
 										</div>
 										<br/><br/><br/><br/>
 
@@ -172,11 +110,11 @@
 											<label for="rarity">Rarity <font color="#ff0000">*</font></label>
 											<div class="select-wrapper">
 											<select name="rarity" id="rarity">
-												<option value="Free">Free</option>
-												<option value="Common">Common</option>
-												<option value="Rare">Rare</option>
-												<option value="Epic">Epic</option>
-												<option value="Legendary">Legendary</option>
+												<option value="1">Free</option>
+												<option value="2">Common</option>
+												<option value="3">Rare</option>
+												<option value="4">Epic</option>
+												<option value="5">Legendary</option>
 											</select>
 										</div>
 										</div>
@@ -185,16 +123,16 @@
 											<label for="class">Class </label>
 											<div class="select-wrapper">
 											<select name="class" id="class">
-												<option value="">Not defined</option>
-												<option value="Druid">Druid</option>
-												<option value="Hunter">Hunter</option>
-												<option value="Mage">Mage</option>
-												<option value="Paladin">Paladin</option>
-												<option value="Priest">Priest</option>
-												<option value="Rogue">Rogue</option>
-												<option value="Shaman">Shaman</option>
-												<option value="Warlock">Warlock</option>
-												<option value="Warrior">Warrior</option>
+												<option value="10">Not defined</option>
+												<option value="9">Druid</option>
+												<option value="5">Hunter</option>
+												<option value="1">Mage</option>
+												<option value="2">Paladin</option>
+												<option value="8">Priest</option>
+												<option value="6">Rogue</option>
+												<option value="7">Shaman</option>
+												<option value="4">Warlock</option>
+												<option value="3">Warrior</option>
 											</select>
 										</div>
 										</div>
@@ -202,35 +140,22 @@
 
 										<div class="field half first">
 											<label for="durability">Durability</label>
-											<div class="select-wrapper">
-											<select name="durability" id="durability">
-												<option value="">Not defined</option>
-												<option value="0">0</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="6">6</option>
-												<option value="7">7</option>
-												<option value="8">8</option>
-											</select>
-										</div>
+											<input type="number" name="durability" id="durability"/>
 										</div>
 
 										<div class="field half">
 											<label for="race">Race</label>
 											<div class="select-wrapper">
 											<select name="race" id="race">
-												<option value="">Not defined</option>
-												<option value="totem">Totem</option>
-												<option value="dragon">Dragon</option>
-												<option value="beast">Beast</option>
-												<option value="demon">Demon</option>
-												<option value="elemental">Elemental</option>
-												<option value="mech">Mech</option>
-												<option value="murloc">Murloc</option>
-												<option value="pirate">Pirate</option>
+												<option value="9">Not defined</option>
+												<option value="1">Totem</option>
+												<option value="2">Dragon</option>
+												<option value="3">Beast</option>
+												<option value="4">Demon</option>
+												<option value="5">Elemental</option>
+												<option value="6">Mech</option>
+												<option value="7">Murloc</option>
+												<option value="8">Pirate</option>
 											</select>
 										</div>
 										</div>
@@ -262,6 +187,83 @@
 
 									</form>
 								</section>
+
+								<hr />
+								<h2>Search a card ID</h2>
+								<p>If you want to delete a card, please refer to the <b>ID card</b> in the table bellow. Cards are classified by <b>alphabetical order</b>.</p>
+								<section>
+
+											<div class="table-wrapper">
+												<table class="alt">
+
+													<thead>
+														<tr>
+															<th>IdCards</th>
+															<th>Name</th>
+															<th>Attack</th>
+															<th>Health</th>
+															<th>ManaCost</th>
+															<th>Artist</th>
+															<th>Class</th>
+															<th>CardsSet</th>
+															<th>Type</th>
+															<th>Rarity</th>
+														</tr>
+													</thead>
+
+													<tbody>
+														<% for(var i = 0 ; i < result.length ; i++) { %>
+															<tr>
+																<td><%= result[i].IdCard %></td>
+																<td><%= result[i].Name %></td>
+																<td><%= result[i].Attack %></td>
+																<td><%= result[i].Health %></td>
+																<td><%= result[i].ManaCost %></td>
+																<td><%= result[i].Artist %></td>
+																<td><%= result[i].LblClass %></td>
+																<td><%= result[i].LblCardsSet %></td>
+																<td><%= result[i].LblType %></td>
+																<td><%= result[i].LblRarity %></td>
+
+															</tr>
+
+														<% } %>
+
+													</tbody>
+
+													<tfoot>
+														<tr>
+															<td colspan="2"></td>
+															<td></td>
+														</tr>
+													</tfoot>
+												</table>
+											</div>
+
+
+
+
+							</section>
+
+							<hr />
+							<h2>Delete a card </h2>
+							<p>You need to use the <b>ID card</b> which you can find in the previous section.</p>
+
+
+							<section>
+								<form method="post" action="/cards/delete">
+									<div class="fields">
+										<label for="id">ID Card <font color="#ff0000">*</font></label>
+										<input type="number" name="id" id="id" required/>
+									</div>
+
+									<ul class="actions">
+										<li><input type="submit" class="button scrolly" value="DELETE A CARD" id="submit"></li>
+									</ul>
+
+								</form>
+							</section>
+
 							</div>
 
 					</section>
