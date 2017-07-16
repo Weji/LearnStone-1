@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Ven 14 Juillet 2017 à 19:15
+-- Généré le :  Dim 16 Juillet 2017 à 17:36
 -- Version du serveur :  5.6.35
 -- Version de PHP :  7.1.1
 
@@ -59,7 +59,7 @@ CREATE TABLE `Card` (
   `manaCost` int(11) NOT NULL,
   `artist` varchar(255) DEFAULT NULL,
   `durability` int(11) DEFAULT NULL,
-  `idRefClass` int(11) NOT NULL,
+  `idRefClass` int(11) DEFAULT NULL,
   `idRefCardsSet` int(11) NOT NULL,
   `idRefType` int(11) NOT NULL,
   `idRefRace` int(11) DEFAULT NULL,
