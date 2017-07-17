@@ -1,0 +1,130 @@
+/fclient : WS
+
+profilUpdater : 
+IN : idPerson, bool isAnswerWell 
+OUT : 
+SUCCESS : JSON bool "result" true 
+FAILURE : JSON bool "result" false
+
+questionLog : 
+IN : idPerson, idQuestion, bool isAnswerWell 
+OUT : 
+SUCCESS : JSON bool "result" true 
+FAILURE : JSON bool "result" false
+
+getPerson : 
+IN : idPerson 
+OUT : 
+SUCCESS : JSON "Person" object (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false 
+
+getIdPerson : 
+IN : username, password 
+OUT : 
+SUCCESS : JSON "idPerson" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+createPerson : 
+IN : firstname, lastname, idRefRole, username, password, mail
+OUT : 
+SUCCESS : JSON bool "result" true 
+FAILURE : JSON bool "result" false
+
+isRealUsername : 
+IN : username 
+OUT : 
+SUCCESS : JSON bool "result" true (if exist) / JSON bool "result" false (if not exist)
+FAILURE : JSON bool "result" false
+
+getMinIdQuestion : 
+IN : (void)
+OUT : 
+SUCCESS : JSON "min(idQuestion)" (if define) /  JSON bool "result" false (if not)
+FAILURE : JSON bool "result" false
+
+getMaxIdQuestion : 
+IN : (void)
+OUT : 
+SUCCESS : JSON "max(idQuestion)" (if define) /  JSON bool "result" false (if not)
+FAILURE : JSON bool "result" false
+
+getQuestion : 
+IN : idQuestion 
+OUT : 
+SUCCESS : JSON "Question" object (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false 
+
+getAnswerFromQuestion : 
+IN : idQuestion 
+OUT : 
+SUCCESS : JSON "Answer" multiple object (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false 
+
+getListNumberLesson : 
+IN : (void)
+OUT : 
+SUCCESS : JSON  List of "numberLesson" Ascending (if exist) /  JSON bool "result" false (if not)
+FAILURE : JSON bool "result" false
+
+getLesson : 
+IN : numberLesson 
+OUT : 
+SUCCESS : JSON "Lesson" object (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false 
+
+lessonLog : 
+IN : idPerson, idLesson 
+OUT : 
+SUCCESS : JSON bool "result" true 
+FAILURE : JSON bool "result" false
+
+getLastReadLesson : 
+IN : idPerson 
+OUT : 
+SUCCESS : JSON "numberLesson" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getLblCardsSet : 
+IN : idRefCardsSet 
+SUCCESS : JSON "lblCardsSet" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getLblClass : 
+IN : idRefClass 
+SUCCESS : JSON "lblClass" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getLblRace : 
+IN : idRefRace 
+SUCCESS : JSON "lblRace" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getLblRarity : 
+IN : idRefRarity 
+SUCCESS : JSON "lblRarity" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getLblRole : 
+IN : idRefRole 
+SUCCESS : JSON "lblRole" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getLblType : 
+IN : idRefType 
+SUCCESS : JSON "lblType" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getIdAndURLCard : 
+IN : (void)
+SUCCESS : JSON "idCard" Ascending, "img" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getFilteredCard : 
+IN : (void)
+SUCCESS : JSON List of "Card" Object (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getFilteredWord : 
+IN : letter (char) 
+SUCCESS : JSON List of "Word" Object Ascending by Word starting by "letter" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
