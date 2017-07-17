@@ -1,5 +1,8 @@
 /fclient : WS
 
+wsPassword = "FeNBGjzDG354@ofe*$32Rfsss4F"
+
+
 profilUpdater : 
 IN : idPerson, bool isAnswerWell 
 OUT : 
