@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Dim 16 Juillet 2017 à 17:36
+-- Généré le :  Mar 18 Juillet 2017 à 21:28
 -- Version du serveur :  5.6.35
 -- Version de PHP :  7.1.1
 
@@ -97,14 +97,14 @@ CREATE TABLE `CardKeyWord` (
 CREATE TABLE `Definition` (
   `idDefinition` int(11) NOT NULL,
   `word` varchar(45) NOT NULL,
-  `wordText` varchar(1024) NOT NULL
+  `wordDesc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `Definition`
 --
 
-INSERT INTO `Definition` (`idDefinition`, `word`, `wordText`) VALUES
+INSERT INTO `Definition` (`idDefinition`, `word`, `wordDesc`) VALUES
 (2, 'Aggro', 'Définit un archétype de deck particulièrement agressif, qui se joue rapidement et qui a pour objectif principal de terminer la partie très rapidement.');
 
 -- --------------------------------------------------------
@@ -176,7 +176,7 @@ CREATE TABLE `PersonLesson` (
   `idPersonLesson` int(11) NOT NULL,
   `idPerson` int(11) NOT NULL,
   `idLesson` int(11) NOT NULL,
-  `dateRead` date NOT NULL
+  `dateRead` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -212,7 +212,7 @@ CREATE TABLE `QuestionAnswered` (
   `idPerson` int(11) NOT NULL,
   `idQuestion` int(11) NOT NULL,
   `isAnswerWell` tinyint(1) NOT NULL,
-  `dateAnswered` date NOT NULL
+  `dateAnswered` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
