@@ -92,9 +92,19 @@ IN : idRefCardsSet
 SUCCESS : JSON "lblCardsSet" (if exist) / JSON bool "result" false (if not exist) 
 FAILURE : JSON bool "result" false
 
+getAllLblCardsSet : 
+IN : (void) 
+SUCCESS : JSON List of "lblCardsSet" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
 getLblClass : 
 IN : idRefClass 
 SUCCESS : JSON "lblClass" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getAllLblClass : 
+IN : (void) 
+SUCCESS : JSON List of "lblClass" (if exist) / JSON bool "result" false (if not exist) 
 FAILURE : JSON bool "result" false
 
 getLblRace : 
@@ -102,9 +112,19 @@ IN : idRefRace
 SUCCESS : JSON "lblRace" (if exist) / JSON bool "result" false (if not exist) 
 FAILURE : JSON bool "result" false
 
+getAllLblRace : 
+IN : (void) 
+SUCCESS : JSON List of "lblRace" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
 getLblRarity : 
 IN : idRefRarity 
 SUCCESS : JSON "lblRarity" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getAllLblRarity : 
+IN : (void) 
+SUCCESS : JSON List of "lblRarity" (if exist) / JSON bool "result" false (if not exist) 
 FAILURE : JSON bool "result" false
 
 getLblRole : 
@@ -115,6 +135,11 @@ FAILURE : JSON bool "result" false
 getLblType : 
 IN : idRefType 
 SUCCESS : JSON "lblType" (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false
+
+getAllLblType : 
+IN : (void) 
+SUCCESS : JSON List of "lblType" (if exist) / JSON bool "result" false (if not exist) 
 FAILURE : JSON bool "result" false
 
 getIdAndURLCard : 
@@ -131,3 +156,9 @@ getFilteredWord :
 IN : letter (char) 
 SUCCESS : JSON List of "Word" Object Ascending by Word starting by "letter" (if exist) / JSON bool "result" false (if not exist) 
 FAILURE : JSON bool "result" false
+
+getCard : 
+IN : idCard 
+OUT : 
+SUCCESS : JSON "Person" object (if exist) / JSON bool "result" false (if not exist) 
+FAILURE : JSON bool "result" false 

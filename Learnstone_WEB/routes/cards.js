@@ -4,6 +4,8 @@ var session = require('express-session');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 
+var async = require('async');
+
 var connection = require("../connection");
 var router = express.Router();
 
@@ -13,7 +15,7 @@ router.get('/', function(req, res) {
     if (!req.session.username) { res.redirect('/'); }
     else {
 
-      connection.query(
+    /*  connection.query(
 
        'SELECT * ' +
        'FROM Card a ' +
@@ -34,6 +36,26 @@ router.get('/', function(req, res) {
                    res.render('error', {err: err});
                  }
               });
+*/
+
+async.parallel([
+  function(callback) { connection.query('SELECT lblClass FROM Refclass', callback) },
+  function(callback) { connection.query('SELECT lblRarity FROM Refrarity', callback) }
+], function(err, results) {
+  if(results)
+  {
+  let plz;
+  for (var i = 0; i < results[0][0].length; i++) {plz = results[0][0];};
+  //res.render('error.ejs', { plz : plz });
+  var test = JSON.stringify(plz[0]);
+  console.log(test.substring(13, test.length -2)); 
+
+  }
+  else
+  res.render('error');
+});
+
+
 
       }
 
