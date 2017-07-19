@@ -54,7 +54,7 @@ function SubmitAnswer(err, res, result, type) {
 function CheckPassword(req, res) {
   if(req.body.wsPassword != wsPassword){
 
-    res.json({login: "Wrong Password"});
+    res.json({result: "Wrong Password"});
     return(false);
 
   } return(true);
