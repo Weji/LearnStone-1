@@ -9,6 +9,8 @@
   "author": "Louis",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.15.3",
+    "mysql": "^2.13.0",
     "nodedev": "0.0.1",
     "sequelize": "^4.3.2",
     "unirest": "^0.5.1"
