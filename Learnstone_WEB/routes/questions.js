@@ -5,111 +5,124 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 
 var connection = require("../connection");
+var check = require("../check");
+
 var router = express.Router();
 
 
 router.get('/', function(req, res) {
 
-    if (!req.session.username) { res.redirect('/'); }
-    else {
+  if ( check.session(req.session.username, res) ){
 
-          connection.query('SELECT * FROM Question ORDER BY questionText', function(err, rows, fields) {
+    connection.query('SELECT a.idQuestion, a.questionText, b.answerText, b.isCorrectAnswer FROM Question a ' +
+                     'LEFT OUTER JOIN answer b ON a.idQuestion = b.idQuestion ' +
+                     'ORDER BY a.questionText',
 
-                    if (!err){
+    function(err, rows, fields) {
 
-                       let result;
-                       for (var i = 0; i < rows.length; i++) {result = rows;};
-                       res.render('questions', {result: result});
+      if (!check.error(err, res)){
 
-                     }
-                     else{
+        res.render('questions', { questionsAndAnswers: rows } );
 
-                       res.render('error', {err: err});
+      }
 
-                     }
+    });
+
+  }
+
+});
+
+
+router.post('/', function(req, res) {
+
+  if ( check.session(req.session.username, res) ){
+
+    if (req.body.img == "") {req.body.img = null ;}
+
+    var iQuestion = {
+            questionText: req.body.questionText,
+            nbUse: req.body.nbUse,
+            nbResult: req.body.nbResult,
+            img: req.body.img
+        };
+
+    connection.query('INSERT INTO Question SET ?', iQuestion, function(err, result) {
+
+      if (!check.error(err, res)){
+
+        var numberMaxAnswer = 2;
+        var valAnswer = [
+          [req.body.answerTextOne, 0, result.insertId],
+          [req.body.answerTextTwo, 0, result.insertId]
+        ];
+
+        if(req.body.answerTextThree){
+          valAnswer.push([req.body.answerTextThree, 0, result.insertId]);
+          numberMaxAnswer++;
+        }
+
+        if(req.body.answerTextFour){
+          valAnswer.push([req.body.answerTextFour, 0, result.insertId]);
+          numberMaxAnswer++;
+        }
+
+        if(numberMaxAnswer >= req.body.idCorrectAnswer) {
+
+          valAnswer[req.body.idCorrectAnswer -1][1] = 1;
+
+          connection.query('INSERT INTO Answer (answerText, isCorrectAnswer, idQuestion) VALUES ?', [valAnswer], function(err2, result2) {
+
+            if (!check.error(err2, res)){
+
+              res.redirect('/questions');
+
+            }
+
+          });
+
+        } else {
+
+          connection.query('DELETE FROM Question WHERE idQuestion = ?', result.insertId, function(err2, result2) {
+
+            if (!check.error(err2, res)){
+
+              res.redirect('/questions');
+
+            }
+
           });
 
         }
 
-});
+      }
 
-router.post('/', function(req, res) {
+    });
 
-  if (!req.session.username) { res.redirect('/'); }
-  else {
-
-  //    if (req.body.attack == "") {req.body.attack = null ;}
-    //  if (req.body.class == "") {req.body.class = null ;}
-      //if (req.body.race == "") {req.body.race = null ;}
-      //if (req.body.health == "") {req.body.health = null ;}
-      //if (req.body.durability == "") {req.body.durability = null ;}
-
-      var iquestion = {
-              questionText: req.body.questiontext,
-              nbUse: req.body.nbuse,
-              nbResult: req.body.nbresult,
-              img: req.body.img
-          };
-
-      var ianswer = {
-              answerText: req.body.answertext,
-              isCorrectAnswer: req.body.iscorrectanswer,
-          };
-
-      var values; var val;
-
-      connection.query('INSERT INTO Question SET ?', iquestion, function(err, result) {
-
-
-            if (!err) {
-
-
-               values = [
-               [req.body.answerTextOne, 0, result.insertId],
-               [req.body.answerTextTwo, 0, result.insertId],
-               [req.body.answerTextThree, 0, result.insertId],
-               [req.body.answerTextFour, 0, result.insertId]
-             ];
-
-             val = [
-             ['Test', 0, 0],
-             ['Test', 0, 0]
-           ];
-
-
-            }
-            //else { res.render('error', {err: err}); }
-
-//            next();
-
-      });
-
-var sql = "INSERT INTO Answer (answerText, isCorrectAnswer, idQuestion) VALUES ?";
-var sqlx = "INSERT INTO answer VALUES ?";
-      connection.query(sqlx, [val], function (err, result) {
-
-            console.log(err);
-            console.log(values);
-            if (!err) { res.redirect('/'); }
-            else { res.render('error', {err: err}); }
-
-      });
-
-   }
+  }
 
 });
+
 
 router.post('/delete', function(req, res) {
 
-  if(!req.session.username) { res.redirect('/'); }
-  else {
-// Voir QUESTIONSANSWERED
-    connection.query('DELETE FROM Question WHERE idQuestion = ?', req.body.id, function(err, result) {
+  if ( check.session(req.session.username, res) ){
 
-      if (!err) { res.redirect('/questions'); }
-      else { res.render('error', {err: err}); }
-
+    connection.query('DELETE FROM QuestionAnswered WHERE idQuestion = ?', req.body.idQuestion, function(err, result) {
+      if (check.error(err, res))
+      return;
     });
+
+    connection.query('DELETE FROM Answer WHERE idQuestion = ?', req.body.idQuestion, function(err, result) {
+      if (check.error(err, res))
+      return;
+    });
+
+    connection.query('DELETE FROM Question WHERE idQuestion = ?', req.body.idQuestion, function(err, result) {
+      if (check.error(err, res))
+      return;
+    });
+
+    res.redirect('/questions');
 
   }
 

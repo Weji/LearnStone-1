@@ -5,36 +5,38 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 
 var connection = require("../connection");
+var check = require("../check");
+
 var router = express.Router();
 
 
-router.get('/',function(req,res){
+router.get('/',function(req, res){
 
-    if (req.session.username) { res.redirect('/cards'); }
-    else { res.render('index'); }
+  if ( check.session(req.session.username, res) )
+  res.redirect('/cards');
 
 });
 
-router.post('/',function(req,res){
 
-    connection.query('SELECT * FROM Person', function(err, rows, fields) {
+router.post('/',function(req, res){
 
-      if (err) { res.render('error', {err: err}); }
-      else {
+  connection.query('SELECT * FROM Person', function(err, rows, fields) {
 
-          for (var i = 0; i < rows.length; i++){
+    if (!check.error(err, res)){
 
-               if (rows[i].username === req.body.username && rows[i].password === req.body.password && rows[i].idRefRole === 2 ){
-                 req.session.username = req.body.username;
-               }
+      for (var i = 0; i < rows.length; i++){
 
-            };
+        if (rows[i].username === req.body.username && rows[i].password === req.body.password && rows[i].idRefRole === 2 )
+        req.session.username = req.body.username;
 
-          res.redirect('/cards');
+      };
 
-          }
+      res.redirect('/cards');
 
-    });
+    }
+
+
+  });
 
 });
 

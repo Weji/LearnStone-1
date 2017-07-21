@@ -9,11 +9,18 @@ var connection = mysql.createConnection({
 });
 
 connection.connect(function(err){
+
   if(!err) {
+
     console.log("Database is connected");
-  } else {
-    console.log("Error connecting database");
+
   }
+  else {
+
+    console.log("Database cannot be access");
+
+  }
+
 });
 
 module.exports = connection;

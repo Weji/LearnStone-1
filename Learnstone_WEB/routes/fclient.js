@@ -430,7 +430,7 @@ router.post('/getFilteredCard', function(req, res) {
   var query = "SELECT * FROM Card WHERE ";
 
   if(req.body.name)
-  query += "name = " + "'" + req.body.name + "'" + " AND ";
+  query += "name like " + "'%" + req.body.name + "%'" + " AND ";
 
   if(req.body.manaCost)
   query += "manaCost = " + req.body.manaCost + " AND ";

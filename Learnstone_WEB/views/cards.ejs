@@ -57,38 +57,39 @@
 										</div>
 
 										<div class="field half">
-											<label for="cost">Cost <font color="#ff0000">*</font></label>
-											<input type="number" name="cost" id="cost" required/>
+											<label for="manaCost">Cost <font color="#ff0000">*</font></label>
+											<input type="number" name="manaCost" id="manaCost" required/>
 										</div>
 										<br/><br/><br/><br/>
 
+
+
 										<div class="field half first">
-											<label for="cardset">Card set <font color="#ff0000">*</font></label>
+											<label for="idRefCardsSet">Card set <font color="#ff0000">*</font></label>
 											<div class="select-wrapper">
-											<select name="cardset" id="cardset">
-												<option value="1">Basic</option>
-												<option value="2">Classic</option>
-												<option value="3">Whispers of the Old Gods</option>
-												<option value="4">One Night in Karazhan</option>
-												<option value="5">Mean Streets of Gadgetzan</option>
-												<option value="6">Journey to Un'Goro</option>
-												<option value="7">Hall of Fame</option>
-												<option value="8">Naxxramas</option>
-												<option value="9">Goblins vs Gnomes</option>
-												<option value="10">Blackrock Mountain</option>
-												<option value="11">The Grand Tournament</option>
-												<option value="12">League of Explorers</option>
+											<select name="idRefCardsSet" id="idRefCardsSet">
+
+												<% if (locals.rCardsSet) { %>
+													 <% for(var i = 1 ; i <= rCardsSet.length ; i++) { %>
+														<option value= <%= i %> >   <%= rCardsSet[i-1].lblCardsSet %>   </option>
+														<% } %>
+												<% } %>
+
 											</select>
 										</div>
 										</div>
 
 										<div class="field half">
-											<label for="type">Type <font color="#ff0000">*</font></label>
+											<label for="idRefType">Type <font color="#ff0000">*</font></label>
 											<div class="select-wrapper">
-											<select name="type" id="type">
-												<option value="1">Minion</option>
-												<option value="2">Weapon</option>
-												<option value="3">Spell</option>
+											<select name="idRefType" id="idRefType">
+
+												<% if (locals.rType) { %>
+													 <% for(var j = 1 ; j <= rType.length ; j++) { %>
+														<option value= <%= j %> >   <%= rType[j-1].lblType %>   </option>
+														<% } %>
+												<% } %>
+
 											</select>
 										</div>
 										</div>
@@ -107,55 +108,53 @@
 										<br/><br/><br/><br/>
 
 										<div class="field half first">
-											<label for="rarity">Rarity <font color="#ff0000">*</font></label>
+											<label for="idRefRarity">Rarity <font color="#ff0000">*</font></label>
 											<div class="select-wrapper">
-											<select name="rarity" id="rarity">
-												<option value="1">Free</option>
-												<option value="2">Common</option>
-												<option value="3">Rare</option>
-												<option value="4">Epic</option>
-												<option value="5">Legendary</option>
+											<select name="idRefRarity" id="idRefRarity">
+
+												<% if (locals.rRarity) { %>
+													 <% for(var k = 1 ; k <= rRarity.length ; k++) { %>
+														<option value= <%= k %> >   <%= rRarity[k-1].lblRarity %>   </option>
+														<% } %>
+												<% } %>
+
 											</select>
 										</div>
 										</div>
 
 										<div class="field half">
-											<label for="class">Class </label>
+											<label for="idRefClass">Class <font color="#ff0000">*</font></label>
 											<div class="select-wrapper">
-											<select name="class" id="class">
-												<option value="">Not defined</option>
-												<option value="9">Druid</option>
-												<option value="5">Hunter</option>
-												<option value="1">Mage</option>
-												<option value="2">Paladin</option>
-												<option value="8">Priest</option>
-												<option value="6">Rogue</option>
-												<option value="7">Shaman</option>
-												<option value="4">Warlock</option>
-												<option value="3">Warrior</option>
+											<select name="idRefClass" id="idRefClass">
+
+												<% if (locals.rClass) { %>
+													 <% for(var l = 1 ; l <= rClass.length ; l++) { %>
+														<option value= <%= l %> >   <%= rClass[l-1].lblClass %>   </option>
+														<% } %>
+												<% } %>
+
 											</select>
 										</div>
 										</div>
 										<br/><br/><br/><br/>
 
 										<div class="field half first">
-											<label for="durability">Durability</label>
+											<label for="durability">Durability </label>
 											<input type="number" name="durability" id="durability"/>
 										</div>
 
 										<div class="field half">
-											<label for="race">Race</label>
+											<label for="idRefRace">Race </label>
 											<div class="select-wrapper">
-											<select name="race" id="race">
+											<select name="idRefRace" id="idRefRace">
+
 												<option value="">Not defined</option>
-												<option value="1">Totem</option>
-												<option value="2">Dragon</option>
-												<option value="3">Beast</option>
-												<option value="4">Demon</option>
-												<option value="5">Elemental</option>
-												<option value="6">Mech</option>
-												<option value="7">Murloc</option>
-												<option value="8">Pirate</option>
+												<% if (locals.rRace) { %>
+													 <% for(var m = 1 ; m <= rRace.length ; m++) { %>
+														<option value= <%= m %> >   <%= rRace[m-1].lblRace %>   </option>
+														<% } %>
+												<% } %>
+
 											</select>
 										</div>
 										</div>
@@ -168,8 +167,8 @@
 
 
 										<div class="field half">
-											<label for="url">URL <font color="#ff0000">*</font></label>
-											<input type="text" name="url" id="url" maxlength="2048" required/>
+											<label for="img">URL of the picture <font color="#ff0000">*</font></label>
+											<input type="text" name="img" id="img" maxlength="2048" required/>
 										</div>
 										<br/><br/><br/><br/>
 
@@ -190,7 +189,7 @@
 
 								<hr />
 								<h2>Search a card ID</h2>
-								<p>If you want to delete a card, please refer to the <b>ID card</b> in the table bellow. Cards are classified by <b>alphabetical order</b>.</p>
+								<p>If you want to delete a card, please refer to the <b>ID</b> Card in the table bellow. Cards are classified by <b>alphabetical order</b>.</p>
 								<section>
 
 											<div class="table-wrapper">
@@ -198,32 +197,32 @@
 
 													<thead>
 														<tr>
-															<th>IdCards</th>
+															<th>ID</th>
 															<th>Name</th>
 															<th>Attack</th>
 															<th>Health</th>
-															<th>ManaCost</th>
+															<th>Mana</th>
 															<th>Artist</th>
 															<th>Class</th>
-															<th>CardsSet</th>
+															<th>Cards Set</th>
 															<th>Type</th>
 															<th>Rarity</th>
 														</tr>
 													</thead>
 
 													<tbody>
-														<% for(var i = 0 ; i < result.length ; i++) { %>
+														<% for(var i = 0 ; i < rCard.length ; i++) { %>
 															<tr>
-																<td><%= result[i].idCard %></td>
-																<td><%= result[i].name %></td>
-																<td><%= result[i].attack %></td>
-																<td><%= result[i].health %></td>
-																<td><%= result[i].manaCost %></td>
-																<td><%= result[i].artist %></td>
-																<td><%= result[i].lblClass %></td>
-																<td><%= result[i].lblCardsSet %></td>
-																<td><%= result[i].lblType %></td>
-																<td><%= result[i].lblRarity %></td>
+																<td><%= rCard[i].idCard %></td>
+																<td><%= rCard[i].name %></td>
+																<td><%= rCard[i].attack %></td>
+																<td><%= rCard[i].health %></td>
+																<td><%= rCard[i].manaCost %></td>
+																<td><%= rCard[i].artist %></td>
+																<td><%= rCard[i].lblClass %></td>
+																<td><%= rCard[i].lblCardsSet %></td>
+																<td><%= rCard[i].lblType %></td>
+																<td><%= rCard[i].lblRarity %></td>
 
 															</tr>
 
@@ -247,14 +246,14 @@
 
 							<hr />
 							<h2>Delete a card </h2>
-							<p>You need to use the <b>ID card</b> which you can find in the previous section.</p>
+							<p>You need to use the <b>ID</b> Card which you can find in the previous section.</p>
 
 
 							<section>
 								<form method="post" action="/cards/delete">
 									<div class="fields">
-										<label for="id">ID Card <font color="#ff0000">*</font></label>
-										<input type="number" name="id" id="id" required/>
+										<label for="idCard">ID Card <font color="#ff0000">*</font></label>
+										<input type="number" name="idCard" id="idCard" required/>
 									</div>
 
 									<ul class="actions">

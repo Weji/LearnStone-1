@@ -3,112 +3,97 @@ var express = require('express');
 var session = require('express-session');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
-
 var async = require('async');
 
 var connection = require("../connection");
+var check = require("../check");
+
 var router = express.Router();
 
 
 router.get('/', function(req, res) {
 
-    if (!req.session.username) { res.redirect('/'); }
-    else {
+  if ( check.session(req.session.username, res) ){
 
-    /*  connection.query(
+    async.parallel([
+      function(callback) { connection.query('SELECT lblCardsSet FROM Refcardsset', callback) },
+      function(callback) { connection.query('SELECT lblType FROM Reftype', callback) },
+      function(callback) { connection.query('SELECT lblRarity FROM Refrarity', callback) },
+      function(callback) { connection.query('SELECT lblClass FROM Refclass', callback) },
+      function(callback) { connection.query('SELECT lblRace FROM Refrace', callback) },
+      function(callback) { connection.query('SELECT * FROM Card a ' +
+                                            'LEFT OUTER JOIN refclass b ON a.idRefClass = b.idRefClass ' +
+                                            'LEFT OUTER JOIN refcardsset c ON a.idRefCardsSet = c.idRefCardsSet ' +
+                                            'LEFT OUTER JOIN reftype d ON a.idRefType = d.idRefType ' +
+                                            'LEFT OUTER JOIN refrarity e ON a.idRefRarity = e.idRefRarity ' +
+                                            'ORDER BY a.name', callback) }
+    ], function(err, results) {
 
-       'SELECT * ' +
-       'FROM Card a ' +
-       'LEFT OUTER JOIN refclass b ON a.idRefClass = b.idRefClass ' +
-       'INNER JOIN refcardsset c ON a.idRefCardsSet = c.idRefCardsSet ' +
-       'INNER JOIN reftype d ON a.idRefType = d.idRefType ' +
-       'INNER JOIN refrarity e ON a.idRefRarity = e.idRefRarity ' +
-       'ORDER BY a.name',
+      if (!check.error(err, res)){
 
-         function(err, rows, fields) {
-
-              if (!err){
-                   let result;
-                   for (var i = 0; i < rows.length; i++) {result = rows;};
-                   res.render('cards', {result: result});
-                 }
-                 else{
-                   res.render('error', {err: err});
-                 }
-              });
-*/
-
-async.parallel([
-  function(callback) { connection.query('SELECT lblClass FROM Refclass', callback) },
-  function(callback) { connection.query('SELECT lblRarity FROM Refrarity', callback) }
-], function(err, results) {
-  if(results)
-  {
-  let plz;
-  for (var i = 0; i < results[0][0].length; i++) {plz = results[0][0];};
-  //res.render('error.ejs', { plz : plz });
-  var test = JSON.stringify(plz[0]);
-  console.log(test.substring(13, test.length -2)); 
-
-  }
-  else
-  res.render('error');
-});
-
-
-
+          res.render('cards', { rCardsSet: results[0][0], rType: results[1][0], rRarity: results[2][0],
+            rClass: results[3][0], rRace: results[4][0], rCard: results[5][0] } );
       }
 
+    });
+
+  }
+
 });
+
 
 router.post('/', function(req, res) {
 
-  if (!req.session.username) { res.redirect('/'); }
-  else {
+  if ( check.session(req.session.username, res) ){
 
-      if (req.body.attack == "") {req.body.attack = null ;}
-      if (req.body.class == "") {req.body.class = null ;}
-      if (req.body.race == "") {req.body.race = null ;}
-      if (req.body.health == "") {req.body.health = null ;}
-      if (req.body.durability == "") {req.body.durability = null ;}
+    if (req.body.attack == "") {req.body.attack = null ;}
+    if (req.body.health == "") {req.body.health = null ;}
+    if (req.body.durability == "") {req.body.durability = null ;}
+    if (req.body.idRefRace == "") {req.body.idRefRace = null ;}
 
-      var icard = {
+      var iCard = {
               name: req.body.name,
               text: req.body.description,
               attack: req.body.attack,
               health: req.body.health,
-              manaCost: req.body.cost,
+              manaCost: req.body.manaCost,
               artist: req.body.artist,
               durability: req.body.durability,
-              idRefClass: req.body.class,
-              idRefCardsSet: req.body.cardset,
-              idRefType: req.body.type,
-              idRefRace: req.body.race,
-              idRefRarity: req.body.rarity,
-              img: req.body.url,
-              imgGold: req.body.url
+              idRefClass: req.body.idRefClass,
+              idRefCardsSet: req.body.idRefCardsSet,
+              idRefType: req.body.idRefType,
+              idRefRace: req.body.idRefRace,
+              idRefRarity: req.body.idRefRarity,
+              img: req.body.img,
+              imgGold: req.body.img
           };
 
-      connection.query('INSERT INTO Card SET ?', icard, function(err, result) {
+      connection.query('INSERT INTO Card SET ?', iCard, function(err, result) {
 
-            if (!err) { res.redirect('/cards'); }
-            else { res.render('error', {err: err}); }
+        if (!check.error(err, res)){
+
+          res.redirect('/cards');
+
+        }
 
       });
 
-   }
+  }
 
 });
 
+
 router.post('/delete', function(req, res) {
 
-  if(!req.session.username) { res.redirect('/'); }
-  else {
+  if ( check.session(req.session.username, res) ){
 
-    connection.query('DELETE FROM Card WHERE idCard = ?', req.body.id, function(err, result) {
+    connection.query('DELETE FROM Card WHERE idCard = ?', req.body.idCard, function(err, result) {
 
-      if (!err) { res.redirect('/cards'); }
-      else { res.render('error', {err: err}); }
+      if (!check.error(err, res)){
+
+        res.redirect('/cards');
+
+      }
 
     });
 

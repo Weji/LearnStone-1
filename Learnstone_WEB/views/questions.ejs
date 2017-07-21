@@ -41,30 +41,30 @@
 							<h1 class="major"><center>Questions</center></h1>
 							<span class="image fit"><img src="_assets/images/lsquestions.jpg" alt="" /></span>
 
-							<p><center>Welcome. <br/>In this area, you can easily <b>add</b>, <b>view</b> and <b>remove</b> a question from our game, Learnstone. <br/>Please note that <b>if you want to do a large change in the game, you should directly act on the database</b>. <br/>Thanks for your support.</br/></p>
+							<p><center>In this area, you can <b>add</b>, <b>view</b> and <b>remove</b> a question and answer. <br/>Please, note that deleting a question will also delete answer to that question. </br/></p>
 
 
 							<hr />
 							<h2>Add a question</h2>
-							<p>Please, fill up all the <font color="#ff0000">required</font> fields in order to add a card.</p>
+							<p>Please, fill up all the <font color="#ff0000">required</font> fields in order to add a question.</p>
 
 								<section>
 									<form method="post" action="/questions">
 
 										<div class="field">
-											<label for="questiontext">Question <font color="#ff0000">*</font></label>
-											<input type="text" name="questiontext" id="questiontext" maxlength="100" required/>
+											<label for="questionText">Question <font color="#ff0000">*</font></label>
+											<input type="text" name="questionText" id="questionText" maxlength="100" required/>
 										</div>
 										<br/>
 
 										<div class="field half first">
-											<label for="nbuse">Number of use <font color="#ff0000">*</font></label>
-											<input type="number" name="nbuse" id="nbuse" required/>
+											<label for="nbUse">Number of use <font color="#ff0000">*</font></label>
+											<input type="number" name="nbUse" id="nbUse" required/>
 										</div>
 
 										<div class="field half">
-											<label for="nbresult">Number of good answer <font color="#ff0000">*</font></label>
-											<input type="number" name="nbresult" id="nbresult" required/>
+											<label for="nbResult">Number of good answer <font color="#ff0000">*</font></label>
+											<input type="number" name="nbResult" id="nbResult" required/>
 										</div>
 										<br/><br/><br/><br/>
 
@@ -80,25 +80,25 @@
 										<br/><br/><br/><br/>
 
 										<div class="field half first">
-											<label for="nbResult">Answer 3 <font color="#ff0000">*</font></label>
-											<input type="text" name="answerTextThree" id="answerTextThree" required/>
+											<label for="nbResult">Answer 3 </label>
+											<input type="text" name="answerTextThree" id="answerTextThree"/>
 										</div>
 
 										<div class="field half">
-											<label for="nbResult">Answer 4 <font color="#ff0000">*</font></label>
-											<input type="text" name="answerTextFour" id="answerTextFour" required/>
+											<label for="nbResult">Answer 4 </label>
+											<input type="text" name="answerTextFour" id="answerTextFour"/>
 										</div>
 										<br/><br/><br/><br/>
 
 
 										<div class="field half first">
-											<label for="img">URL <font color="#ff0000">*</font></label>
-											<input type="text" name="img" id="img" required/>
+											<label for="img">URL of the question picture </label>
+											<input type="text" name="img" id="img"/>
 										</div>
 
 										<div class="field half">
-											<label for="img">Number of the correct Answer <font color="#ff0000">*</font></label>
-											<input type="number" name="isCorrectAnswer" id="isCorrectAnswer" required/>
+											<label for="idCorrectAnswer">Number of the correct Answer <font color="#ff0000">*</font></label>
+											<input type="number" name="idCorrectAnswer" id="idCorrectAnswer" min="1" max="4" required/>
 										</div>
 										<br/><br/><br/><br/>
 
@@ -111,7 +111,7 @@
 
 								<hr />
 								<h2>Search a question ID</h2>
-								<p>If you want to delete a question, please refer to the <b>ID question</b> in the table bellow. Questions are classified by <b>alphabetical order</b>. Please, note that if you delete a question, <b>you will also delele the answer to that question</b>.</p>
+								<p>If you want to delete a question, please refer to the <b>ID question</b> in the table bellow. Questions are classified by <b>alphabetical order</b>. <br/>The right answer is <font color="#5FFF39">green.</font><br/><br/></p>
 								<section>
 
 											<div class="table-wrapper">
@@ -121,19 +121,59 @@
 														<tr>
 															<th>Id Question</th>
 															<th>Question</th>
-															<th>Use</th>
-															<th>Good Answer</th>
+															<th>Answer 1</th>
+															<th>Answer 2</th>
+															<th>Answer 3</th>
+															<th>Answer 4</th>
 														</tr>
 													</thead>
 
 													<tbody>
-														<% for(var i = 0 ; i < result.length ; i++) { %>
-															<tr>
-																<td><%= result[i].idQuestion %></td>
-																<td><%= result[i].questionText %></td>
-																<td><%= result[i].nbUse %></td>
-																<td><%= result[i].nbResult %></td>
-															</tr>
+														<% if(locals.questionsAndAnswers) { %>
+
+															<% var answerCpt = 0; %>
+
+															<% for(var i = 0 ; i < questionsAndAnswers.length ; i++) { %>
+
+																<% if( (i+1 != questionsAndAnswers.length) && (questionsAndAnswers[i].idQuestion == questionsAndAnswers[i+1].idQuestion) ) { %>
+																	<% continue; %>
+																<% } %>
+
+																<tr>
+																	<td><%= questionsAndAnswers[i].idQuestion %></td>
+																	<td><%= questionsAndAnswers[i].questionText %></td>
+
+																	<% for(var j = 0 ; j < questionsAndAnswers.length ; j++) { %>
+
+																		<% if(questionsAndAnswers[i].idQuestion == questionsAndAnswers[j].idQuestion) { %>
+
+																			<% if(questionsAndAnswers[j].isCorrectAnswer == 1) { %>
+
+																				<td><font color="#5FFF39"><%= questionsAndAnswers[j].answerText %></font></td>
+																				<% answerCpt++; %>
+
+																			<% } else{ %>
+
+																				<td><%= questionsAndAnswers[j].answerText %></td>
+																				<% answerCpt++; %>
+
+																			<% } %>
+
+																		<% } %>
+
+																	<% } %>
+
+																	<% while(answerCpt < 4) { %>
+
+																		<td></td>
+																		<% answerCpt++; %>
+
+																	<% } %>
+																	<% answerCpt = 0; %>
+
+																</tr>
+
+															<% } %>
 
 														<% } %>
 
@@ -151,14 +191,14 @@
 
 											<hr />
 											<h2>Delete a question </h2>
-											<p>You need to use the <b>ID question</b> which you can find in the previous section.</p>
+											<p>You need to use the <b>ID question</b> which you can find in the previous section. <br/>Please, note that if you delete a question, <b>you will also delete all answers to that question</b>.</p>
 
 
 											<section>
 												<form method="post" action="/questions/delete">
 													<div class="fields">
-														<label for="id">ID Question <font color="#ff0000">*</font></label>
-														<input type="number" name="id" id="id" required/>
+														<label for="idQuestion">ID Question <font color="#ff0000">*</font></label>
+														<input type="number" name="idQuestion" id="idQuestion" required/>
 													</div>
 
 													<ul class="actions">

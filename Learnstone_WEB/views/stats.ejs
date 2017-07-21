@@ -35,15 +35,139 @@
 		<!-- Wrapper -->
 			<div id="wrapper">
 
-					<!-- Three -->
-						<section id="three" class="wrapper style1 fade-up">
-							<div class="inner">
+				<!-- Main -->
+					<section id="main" class="wrapper style1-alt">
+						<div class="inner">
+							<h1 class="major"><center>Stats</center></h1>
+							<span class="image fit"><img src="_assets/images/lsstats.jpg" alt="" /></span>
 
-<h2>Available soon ... </h2>
+							<p><center>In this area, you can see<b> several statistics.</b></br/></p>
 
-							</div>
+
+							<hr />
+							<h2>Accounts</h2>
+							<p>
+								There is actually <font color="#ff0000">
+									<% if( (locals.numberBasic) && (locals.numberAdmin) ){ %>
+										<%= numberBasic + numberAdmin %>
+									 accounts
+									</font>created on Learnstone.
+								<br/>Specifically, there are <font color="#ff0000">
+									<%= numberAdmin %> administrator account(s)</font>
+								and <font color="#ff0000"><%= numberBasic %> basic account(s)</font>
+								<% } %>
+							</p>
+
+
+								<hr />
+								<h2>Answer of all users</h2>
+								<p>Admin user are in <font color="#ED7F10">orange</font> in the table</p>
+
+								<section>
+											<div class="table-wrapper">
+												<table class="alt">
+
+													<thead>
+														<tr>
+															<th>Username</th>
+															<th>Firstname</th>
+															<th>Lastname</th>
+															<th>Good answer</th>
+															<th>Bad answer</th>
+															<th>%</th>
+															<th>Learned Lessons</th>
+														</tr>
+													</thead>
+
+													<tbody>
+														<% if(locals.personStat) { %>
+															<% for(var i = 0 ; i < personStat.length ; i++) { %>
+
+																<tr>
+																	<% if(locals.personStat[i].idRefRole == 2) { %>
+																		<td><font color="#ED7F10"><%= personStat[i].username %></font></td>
+																	<% } else { %>
+																		<td><%= personStat[i].username %></td>
+																	<% } %>
+
+																	<td><%= personStat[i].firstname %></td>
+																	<td><%= personStat[i].lastname %></td>
+																	<td><font color="#5FFF39"><%= personStat[i].nbGoodAnswer %></font></td>
+																	<td><font color="#ff0000"><%= personStat[i].nbQuestionAnswered - personStat[i].nbGoodAnswer %></font></td>
+																	<% if(personStat[i].nbQuestionAnswered != 0) { %>
+																		<td><font color="#FFFFFF"><%= Math.round( (personStat[i].nbGoodAnswer * 100) / personStat[i].nbQuestionAnswered ) %> %</font></td>
+																	<% } else { %>
+																		<td></td>
+																	<% } %>
+																	<td><font color="#FFFFFF"><%= personStat[i].lessonCount %></font></td>
+																</tr>
+
+															<% } %>
+														<% } %>
+
+													</tbody>
+
+													<tfoot>
+														<tr>
+															<td colspan="2"></td>
+															<td></td>
+														</tr>
+													</tfoot>
+												</table>
+
+									</section>
+
+									<hr />
+									<h2>Questions stats</h2>
+									<p></p>
+
+									<section>
+												<div class="table-wrapper">
+													<table class="alt">
+
+														<thead>
+															<tr>
+																<th>Question Text</th>
+																<th>Number of good answer</th>
+																<th>Number of use</th>
+																<th>%</th>
+															</tr>
+														</thead>
+
+														<tbody>
+															<tr>
+															<% if(locals.questionStat) { %>
+																<% for(var j = 0 ; j < questionStat.length ; j++) { %>
+
+																<td><%= questionStat[j].questionText %></td>
+																<td><font color="#5FFF39"><%= questionStat[j].nbResult %></font></td>
+																<td><%= questionStat[j].nbUse %></td>
+
+																<% if(questionStat[j].nbUse) { %>
+																	<td><font color="#FFFFFF"><%= Math.round( (questionStat[j].nbResult * 100) / questionStat[j].nbUse ) %> %</font></td>
+																<% } else { %>
+																	<td></td>
+																<% } %>
+															</tr>
+																<% } %>
+															<% } %>
+
+														</tbody>
+
+														<tfoot>
+															<tr>
+																<td colspan="2"></td>
+																<td></td>
+															</tr>
+														</tfoot>
+													</table>
+
+									</section>
+
+											</div>
+
 						</section>
-
+					</center>
 				</div>
 
 		<!-- Footer -->
