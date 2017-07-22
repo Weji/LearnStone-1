@@ -108,21 +108,21 @@ router.post('/delete', function(req, res) {
   if ( check.session(req.session.username, res) ){
 
     connection.query('DELETE FROM QuestionAnswered WHERE idQuestion = ?', req.body.idQuestion, function(err, result) {
-      if (check.error(err, res))
-      return;
-    });
 
-    connection.query('DELETE FROM Answer WHERE idQuestion = ?', req.body.idQuestion, function(err, result) {
-      if (check.error(err, res))
-      return;
-    });
+      if (!check.error(err, res))
+      connection.query('DELETE FROM Answer WHERE idQuestion = ?', req.body.idQuestion, function(err, result) {
 
-    connection.query('DELETE FROM Question WHERE idQuestion = ?', req.body.idQuestion, function(err, result) {
-      if (check.error(err, res))
-      return;
-    });
+        if (!check.error(err, res))
+        connection.query('DELETE FROM Question WHERE idQuestion = ?', req.body.idQuestion, function(err, result) {
 
-    res.redirect('/questions');
+          if (!check.error(err, res))
+            res.redirect('/questions');
+
+        });
+
+      });
+
+    });
 
   }
 

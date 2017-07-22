@@ -35,16 +35,113 @@
 		<!-- Wrapper -->
 			<div id="wrapper">
 
-					<!-- Three -->
-						<section id="three" class="wrapper style1 fade-up">
-							<div class="inner">
+				<!-- Main -->
+					<section id="main" class="wrapper style1-alt">
+						<div class="inner">
+							<h1 class="major"><center>Lessons</center></h1>
+							<span class="image fit"><img src="_assets/images/lslessons.jpg" alt="" /></span>
 
-<h2>Available soon ... </h2>
+							<p><center><br/>In this area, you can <b>add</b>, <b>view</b> and <b>remove</b> a Lesson.</br/></p>
+
+
+							<hr />
+							<h2>Add a Lesson</h2>
+							<p>Please, fill up all the <font color="#ff0000">required</font> fields in order to add a lesson. </br/>Please, note that if you want to add a Lesson with a number that already exist, <b>the creation will not success</b>.</p>
+
+								<section>
+									<form method="post" action="/lessons">
+
+										<div class="field half first">
+											<label for="numberLesson">Number Lesson <font color="#ff0000">*</font></label>
+											<input type="number" name="numberLesson" id="numberLesson" required/>
+										</div>
+
+										<div class="field half">
+											<label for="text">Text <font color="#ff0000">*</font></label>
+											<input type="text" name="text" id="text" required/>
+										</div>
+										<br/><br/><br/><br/>
+
+										<div class="field">
+											<label for="img">Image of the Lesson <font color="#ff0000">*</font></label>
+											<input type="text" name="img" id="img" maxlength="2048"/>
+										</div>
+
+
+										<ul class="actions">
+											<li><input type="submit" class="button scrolly" value="ADD A LESSON" id="submit"></li>
+										</ul>
+
+
+									</form>
+								</section>
+
+								<hr />
+								<h2>Search a Lesson ID</h2>
+								<p>If you want to delete a lesson, please refer to the <b>ID</b> Lesson in the table bellow. Lesson are classified by <b>number</b>.</p>
+								<section>
+
+											<div class="table-wrapper">
+												<table class="alt">
+
+													<thead>
+														<tr>
+															<th>Number</th>
+															<th>ID Lesson</th>
+															<th>Text</th>
+														</tr>
+													</thead>
+
+													<tbody>
+														<% for(var i = 0 ; i < rLesson.length ; i++) { %>
+															<tr>
+																<td><%= rLesson[i].numberLesson %></td>
+																<td><font color="#5FFF39"><%= rLesson[i].idLesson %></font></td>
+																<td><%= rLesson[i].text %></td>
+															</tr>
+
+														<% } %>
+
+													</tbody>
+
+													<tfoot>
+														<tr>
+															<td colspan="2"></td>
+															<td></td>
+														</tr>
+													</tfoot>
+												</table>
+											</div>
+
+
+
+
+							</section>
+
+							<hr />
+							<h2>Delete a Lesson </h2>
+							<p>You need to use the <b>ID</b> Lesson which you can find in the previous section.</p>
+
+
+							<section>
+								<form method="post" action="/lessons/delete">
+									<div class="fields">
+										<label for="idLesson">ID Lesson <font color="#ff0000">*</font></label>
+										<input type="number" name="idLesson" id="idLesson" required/>
+									</div>
+
+									<ul class="actions">
+										<li><input type="submit" class="button scrolly" value="DELETE A LESSON" id="submit"></li>
+									</ul>
+
+								</form>
+							</section>
 
 							</div>
-						</section>
 
-				</div>
+					</section>
+				</center>
+			</div>
 
 		<!-- Footer -->
 			<footer id="footer" class="wrapper style1-alt">
