@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
   host : 'localhost',
   user : 'root',
   password : 'root',
-  database : 'LearnStone',
+  database : 'LearnStone_High',
   port : 8889
 });
 
@@ -99,9 +99,9 @@ unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1&lo
      values.push([result.body["Hall of Fame"][i].name, result.body["Hall of Fame"][i].text, result.body["Hall of Fame"][i].attack, result.body["Hall of Fame"][i].health, result.body["Hall of Fame"][i].cost, result.body["Hall of Fame"][i].artist, result.body["Hall of Fame"][i].durability, allClass[result.body["Hall of Fame"][i].playerClass], allCardSet[result.body["Hall of Fame"][i].cardSet], allType[result.body["Hall of Fame"][i].type], allRace[result.body["Hall of Fame"][i].race], allRarity[result.body["Hall of Fame"][i].rarity], result.body["Hall of Fame"][i].img, result.body["Hall of Fame"][i].imgGold]);
     }
 
-    for(var i = 0; i < result.body["Mean Streets of Gadgetzan"].length; i++){
-     values.push([result.body["Mean Streets of Gadgetzan"][i].name, result.body["Mean Streets of Gadgetzan"][i].text, result.body["Mean Streets of Gadgetzan"][i].attack, result.body["Mean Streets of Gadgetzan"][i].health, result.body["Mean Streets of Gadgetzan"][i].cost, result.body["Mean Streets of Gadgetzan"][i].artist, result.body["Mean Streets of Gadgetzan"][i].durability, allClass[result.body["Mean Streets of Gadgetzan"][i].playerClass], allCardSet[result.body["Mean Streets of Gadgetzan"][i].cardSet], allType[result.body["Mean Streets of Gadgetzan"][i].type], allRace[result.body["Mean Streets of Gadgetzan"][i].race], allRarity[result.body["Mean Streets of Gadgetzan"][i].rarity], result.body["Mean Streets of Gadgetzan"][i].img, result.body["Mean Streets of Gadgetzan"][i].imgGold]);
-    }
+    // for(var i = 0; i < result.body["Mean Streets of Gadgetzan"].length; i++){
+    //  values.push([result.body["Mean Streets of Gadgetzan"][i].name, result.body["Mean Streets of Gadgetzan"][i].text, result.body["Mean Streets of Gadgetzan"][i].attack, result.body["Mean Streets of Gadgetzan"][i].health, result.body["Mean Streets of Gadgetzan"][i].cost, result.body["Mean Streets of Gadgetzan"][i].artist, result.body["Mean Streets of Gadgetzan"][i].durability, allClass[result.body["Mean Streets of Gadgetzan"][i].playerClass], allCardSet[result.body["Mean Streets of Gadgetzan"][i].cardSet], allType[result.body["Mean Streets of Gadgetzan"][i].type], allRace[result.body["Mean Streets of Gadgetzan"][i].race], allRarity[result.body["Mean Streets of Gadgetzan"][i].rarity], result.body["Mean Streets of Gadgetzan"][i].img, result.body["Mean Streets of Gadgetzan"][i].imgGold]);
+    // }
 
     for(var i = 0; i < result.body["Whispers of the Old Gods"].length; i++){
       values.push([result.body["Whispers of the Old Gods"][i].name, result.body["Whispers of the Old Gods"][i].text, result.body["Whispers of the Old Gods"][i].attack, result.body["Whispers of the Old Gods"][i].health, result.body["Whispers of the Old Gods"][i].cost, result.body["Whispers of the Old Gods"][i].artist, result.body["Whispers of the Old Gods"][i].durability, allClass[result.body["Whispers of the Old Gods"][i].playerClass], allCardSet[result.body["Whispers of the Old Gods"][i].cardSet], allType[result.body["Whispers of the Old Gods"][i].type], allRace[result.body["Whispers of the Old Gods"][i].race], allRarity[result.body["Whispers of the Old Gods"][i].rarity], result.body["Whispers of the Old Gods"][i].img, result.body["Whispers of the Old Gods"][i].imgGold]);
@@ -111,9 +111,9 @@ unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1&lo
       values.push([result.body["One Night in Karazhan"][i].name, result.body["One Night in Karazhan"][i].text, result.body["One Night in Karazhan"][i].attack, result.body["One Night in Karazhan"][i].health, result.body["One Night in Karazhan"][i].cost, result.body["One Night in Karazhan"][i].artist, result.body["One Night in Karazhan"][i].durability, allClass[result.body["One Night in Karazhan"][i].playerClass], allCardSet[result.body["One Night in Karazhan"][i].cardSet], allType[result.body["One Night in Karazhan"][i].type], allRace[result.body["One Night in Karazhan"][i].race], allRarity[result.body["One Night in Karazhan"][i].rarity], result.body["One Night in Karazhan"][i].img, result.body["One Night in Karazhan"][i].imgGold]);
     }
 
-    for(var i = 0; i < result.body["Journey to Un\'Goro"].length; i++){
-      values.push([result.body["Journey to Un\'Goro"][i].name, result.body["Journey to Un\'Goro"][i].text, result.body["Journey to Un\'Goro"][i].attack, result.body["Journey to Un\'Goro"][i].health, result.body["Journey to Un\'Goro"][i].cost, result.body["Journey to Un\'Goro"][i].artist, result.body["Journey to Un\'Goro"][i].durability, allClass[result.body["Journey to Un\'Goro"][i].playerClass], allCardSet[result.body["Journey to Un\'Goro"][i].cardSet], allType[result.body["Journey to Un\'Goro"][i].type], allRace[result.body["Journey to Un\'Goro"][i].race], allRarity[result.body["Journey to Un\'Goro"][i].rarity], result.body["Journey to Un\'Goro"][i].img, result.body["Journey to Un\'Goro"][i].imgGold]);
-    }
+    // for(var i = 0; i < result.body["Journey to Un\'Goro"].length; i++){
+    //   values.push([result.body["Journey to Un\'Goro"][i].name, result.body["Journey to Un\'Goro"][i].text, result.body["Journey to Un\'Goro"][i].attack, result.body["Journey to Un\'Goro"][i].health, result.body["Journey to Un\'Goro"][i].cost, result.body["Journey to Un\'Goro"][i].artist, result.body["Journey to Un\'Goro"][i].durability, allClass[result.body["Journey to Un\'Goro"][i].playerClass], allCardSet[result.body["Journey to Un\'Goro"][i].cardSet], allType[result.body["Journey to Un\'Goro"][i].type], allRace[result.body["Journey to Un\'Goro"][i].race], allRarity[result.body["Journey to Un\'Goro"][i].rarity], result.body["Journey to Un\'Goro"][i].img, result.body["Journey to Un\'Goro"][i].imgGold]);
+    // }
 
     for(var i = 0; i < result.body["Goblins vs Gnomes"].length; i++){
       values.push([result.body["Goblins vs Gnomes"][i].name, result.body["Goblins vs Gnomes"][i].text, result.body["Goblins vs Gnomes"][i].attack, result.body["Goblins vs Gnomes"][i].health, result.body["Goblins vs Gnomes"][i].cost, result.body["Goblins vs Gnomes"][i].artist, result.body["Goblins vs Gnomes"][i].durability, allClass[result.body["Goblins vs Gnomes"][i].playerClass], allCardSet[result.body["Goblins vs Gnomes"][i].cardSet], allType[result.body["Goblins vs Gnomes"][i].type], allRace[result.body["Goblins vs Gnomes"][i].race], allRarity[result.body["Goblins vs Gnomes"][i].rarity], result.body["Goblins vs Gnomes"][i].img, result.body["Goblins vs Gnomes"][i].imgGold]);
