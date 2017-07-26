@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Dim 23 Juillet 2017 à 15:14
+-- Généré le :  Mer 26 Juillet 2017 à 14:02
 -- Version du serveur :  5.6.35
 -- Version de PHP :  7.1.1
 
@@ -91,10 +91,10 @@ INSERT INTO `Answer` (`idAnswer`, `answerText`, `isCorrectAnswer`, `idQuestion`)
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Card`
+-- Structure de la table `CARD`
 --
 
-CREATE TABLE `Card` (
+CREATE TABLE `CARD` (
   `idCard` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `text` text,
@@ -113,10 +113,10 @@ CREATE TABLE `Card` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `Card`
+-- Contenu de la table `CARD`
 --
 
-INSERT INTO `Card` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
+INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
 (1, 'Dissimuler', 'Confère <b>Camouflage</b> à vos serviteurs jusqu’à votre prochain tour.', NULL, NULL, 1, 'Steve Hui', NULL, 4, 7, 3, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/EX1_128.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/EX1_128_premium.gif'),
 (2, 'Javelot de glace', '<b>Gèle</b> un personnage. S’il est déjà <b>gelé</b>, inflige $4 |4(point,points) de dégâts à la place.', NULL, NULL, 1, 'Alex Horley Orlandelli', NULL, 1, 7, 3, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/CS2_031.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/CS2_031_premium.gif'),
 (3, 'Puissance accablante', 'Donne_+4/+4 à un serviteur allié jusqu’à la fin du tour. Puis il meurt. De façon horrible.', NULL, NULL, 1, 'Tom Baxa', NULL, 3, 7, 3, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/EX1_316.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/EX1_316_premium.gif'),
@@ -206,7 +206,8 @@ CREATE TABLE `Person` (
 INSERT INTO `Person` (`idPerson`, `firstname`, `lastname`, `nbGoodAnswer`, `nbQuestionAnswered`, `idRefRole`, `username`, `password`, `mail`) VALUES
 (1, 'Admin', 'Admin', 0, 0, 2, 'Admin', 'niku', 'Admin.niku@learnstone.com'),
 (2, 'Louis', 'Mantopoulos', 16, 37, 1, 'MrFrizz', 'MrFrizz', 'MrFrizz@salut.com'),
-(3, 'William', 'Morgado', 10, 20, 1, 'Neji', 'Neji', 'Neji@gmail.com');
+(3, 'William', 'Morgado', 10, 20, 1, 'Neji', 'Neji', 'Neji@gmail.com'),
+(4, 'Steven', 'Kponou-Johson', 0, 0, 2, 'Steven', 'Steven', 'Steven@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -305,8 +306,6 @@ INSERT INTO `RefCardsSet` (`idRefCardsSet`, `lblCardsSet`) VALUES
 (2, 'Classic'),
 (3, 'Whispers of the Old Gods'),
 (4, 'One Night in Karazhan'),
-(5, 'Mean Streets of Gadgetzan'),
-(6, 'Journey to Un\'Goro'),
 (7, 'Hall of Fame'),
 (8, 'Naxxramas'),
 (9, 'Goblins vs Gnomes'),
@@ -440,9 +439,9 @@ ALTER TABLE `Answer`
   ADD KEY `FK_Answer_Question` (`idQuestion`);
 
 --
--- Index pour la table `Card`
+-- Index pour la table `CARD`
 --
-ALTER TABLE `Card`
+ALTER TABLE `CARD`
   ADD PRIMARY KEY (`idCard`),
   ADD KEY `FK_Card_RefClass` (`idRefClass`),
   ADD KEY `FK_Card_RefCardsSet` (`idRefCardsSet`),
@@ -537,9 +536,9 @@ ALTER TABLE `RefType`
 ALTER TABLE `Answer`
   MODIFY `idAnswer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
--- AUTO_INCREMENT pour la table `Card`
+-- AUTO_INCREMENT pour la table `CARD`
 --
-ALTER TABLE `Card`
+ALTER TABLE `CARD`
   MODIFY `idCard` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `Definition`
@@ -555,7 +554,7 @@ ALTER TABLE `Lesson`
 -- AUTO_INCREMENT pour la table `Person`
 --
 ALTER TABLE `Person`
-  MODIFY `idPerson` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idPerson` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `PersonLesson`
 --
@@ -612,9 +611,9 @@ ALTER TABLE `Answer`
   ADD CONSTRAINT `FK_Answer_Question` FOREIGN KEY (`idQuestion`) REFERENCES `Question` (`idQuestion`);
 
 --
--- Contraintes pour la table `Card`
+-- Contraintes pour la table `CARD`
 --
-ALTER TABLE `Card`
+ALTER TABLE `CARD`
   ADD CONSTRAINT `FK_Card_RefCardsSet` FOREIGN KEY (`idRefCardsSet`) REFERENCES `RefCardsSet` (`idRefCardsSet`),
   ADD CONSTRAINT `FK_Card_RefClass` FOREIGN KEY (`idRefClass`) REFERENCES `RefClass` (`idRefClass`),
   ADD CONSTRAINT `FK_Card_RefRace` FOREIGN KEY (`idRefRace`) REFERENCES `RefRace` (`idRefRace`),

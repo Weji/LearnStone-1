@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Dim 23 Juillet 2017 à 19:33
+-- Généré le :  Mer 26 Juillet 2017 à 14:02
 -- Version du serveur :  5.6.35
 -- Version de PHP :  7.1.1
 
@@ -91,10 +91,10 @@ INSERT INTO `Answer` (`idAnswer`, `answerText`, `isCorrectAnswer`, `idQuestion`)
 -- --------------------------------------------------------
 
 --
--- Structure de la table `CARD`
+-- Structure de la table `Card`
 --
 
-CREATE TABLE `CARD` (
+CREATE TABLE `Card` (
   `idCard` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `text` text,
@@ -108,15 +108,15 @@ CREATE TABLE `CARD` (
   `idRefType` int(11) NOT NULL,
   `idRefRace` int(11) DEFAULT NULL,
   `idRefRarity` int(11) NOT NULL,
-  `img` text,
-  `imgGold` text
+  `img` varchar(2048) DEFAULT NULL,
+  `imgGold` varchar(2048) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `CARD`
+-- Contenu de la table `Card`
 --
 
-INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
+INSERT INTO `Card` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
 (1, 'Anduin Wrynn', NULL, NULL, 30, NULL, NULL, NULL, 5, 1, 4, NULL, 1, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/HERO_09.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/HERO_09_premium.gif'),
 (2, 'Garrosh Hurlenfer', NULL, NULL, 30, NULL, NULL, NULL, 9, 1, 4, NULL, 1, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/HERO_01.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/HERO_01_premium.gif'),
 (3, 'Gul’dan', NULL, NULL, 30, NULL, NULL, NULL, 3, 1, 4, NULL, 1, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/HERO_07.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/HERO_07_premium.gif'),
@@ -290,7 +290,7 @@ INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `a
 (171, 'Matelot des mers du Sud', 'A <b>Charge</b> tant que vous êtes équipé d’une arme.', 2, 1, 1, 'Dan Brereton', NULL, 10, 2, 1, 8, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/CS2_146.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/CS2_146_premium.gif'),
 (172, 'Noble sacrifice', '<b>Secret :</b> invoque un défenseur 2/1 qui devient la cible de l’adversaire sur le point d’attaquer.', NULL, NULL, 1, 'Zoltan & Gabor', NULL, 2, 2, 3, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/EX1_130.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/EX1_130_premium.gif'),
 (173, 'Œil pour œil', '<b>Secret_:</b> inflige au héros adverse autant de dégâts que ceux subis par votre héros.', NULL, NULL, 1, 'James Ryman', NULL, 2, 2, 3, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/EX1_132.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/EX1_132_premium.gif');
-INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
+INSERT INTO `Card` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
 (174, 'Porte-bouclier', '<b>Provocation</b>', 0, 4, 1, 'Carl Critchlow', NULL, 10, 2, 1, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/EX1_405.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/EX1_405_premium.gif'),
 (175, 'Poulet furieux', '<b>Accès de rage :</b> +5 ATQ.', 1, 1, 1, 'Mike Sass', NULL, 10, 2, 1, NULL, 3, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/EX1_009.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/EX1_009_premium.gif'),
 (176, 'Rédemption', '<b>Secret_:</b> quand un serviteur allié meurt, il est ressuscité avec_1_PV.', NULL, NULL, 1, 'Ittoku', NULL, 2, 2, 3, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/EX1_136.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/EX1_136_premium.gif'),
@@ -449,7 +449,7 @@ INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `a
 (329, 'Météores', '<b>Choix des armes :</b> inflige $5 |4(point,points) de dégâts à un serviteur ; ou $2 |4(point,points) de dégâts à tous les serviteurs adverses.', NULL, NULL, 5, 'Richard Wright', NULL, 6, 2, 3, NULL, 3, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/NEW1_007.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/NEW1_007_premium.gif'),
 (330, 'Nervi de la KapitalRisk', 'Vos serviteurs coûtent (3)_cristaux de plus.', 7, 6, 5, 'John Polidora', NULL, 10, 2, 1, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/CS2_227.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/CS2_227_premium.gif'),
 (331, 'Nourrir', '<b>Choix des armes_:</b> vous gagnez 2_cristaux de mana ou vous piochez 3_cartes.', NULL, NULL, 5, 'Terese Nielsen', NULL, 6, 2, 3, NULL, 3, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/EX1_164.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/EX1_164_premium.gif');
-INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
+INSERT INTO `Card` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
 (332, 'Plaie funeste', 'Inflige $2_|4(point,points) de dégâts à un personnage. S’il est tué, invoque un démon aléatoire.', NULL, NULL, 5, 'Raymond Swanland', NULL, 3, 2, 3, NULL, 4, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/EX1_320.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/EX1_320_premium.gif'),
 (333, 'Rampant des tourbières', '<b>Provocation</b>', 3, 6, 5, 'Monica Langlois', NULL, 10, 2, 1, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/CS1_069.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/CS1_069_premium.gif'),
 (334, 'Tigre de Strangleronce', '<b>Camouflage</b>', 5, 5, 5, 'Alex Horley Orlandelli', NULL, 10, 2, 1, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/EX1_028.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/EX1_028_premium.gif'),
@@ -611,7 +611,7 @@ INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `a
 (490, 'Ancien héraut', 'Au début de votre tour, place un serviteur coûtant 10 cristaux de mana de votre deck dans votre main.', 4, 6, 6, 'Zoltan Boros', NULL, 10, 3, 1, NULL, 4, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/OG_290.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/OG_290_premium.gif'),
 (491, 'Cauchemar écailleux', 'Au début de votre tour, double l’Attaque de ce serviteur.', 2, 8, 6, 'Luke Mancini', NULL, 10, 3, 1, 2, 4, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/OG_271.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/OG_271_premium.gif'),
 (492, 'Chose venue d’en bas', '<b>Provocation</b>\\nCoûte (1) |4(cristal,cristaux) de moins pour chaque totem invoqué par vous dans cette partie.', 5, 5, 6, 'Slawomir Maniak', NULL, 8, 3, 1, NULL, 3, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/OG_028.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/OG_028_premium.gif');
-INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
+INSERT INTO `Card` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
 (493, 'Héraut Volazj', '<b>Cri de guerre :</b> invoque une copie 1/1 de chacun de vos autres serviteurs.', 5, 5, 6, 'Luke Mancini', NULL, 5, 3, 1, NULL, 5, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/OG_316.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/OG_316_premium.gif'),
 (494, 'Invocateur sans-visage', '<b>Cri de guerre :</b> invoque un serviteur aléatoire coûtant 3 cristaux.', 5, 5, 6, 'Mark Abadier', NULL, 1, 3, 1, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/OG_207.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/OG_207_premium.gif'),
 (495, 'Mukla, tyran du val', '<b>Cri de guerre :</b> place\\n2 bananes dans votre main.', 5, 5, 6, 'Sam Nielson', NULL, 10, 3, 1, NULL, 5, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/OG_122.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/OG_122_premium.gif'),
@@ -772,7 +772,7 @@ INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `a
 (650, 'Brik-à-bot', 'Chaque fois qu’un Méca allié meurt, gagne +2/+2.', 1, 5, 5, 'Zoltan Boros', NULL, 10, 9, 1, 6, 4, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/GVG_106.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/GVG_106_premium.gif'),
 (651, 'Cœur de démon', 'Inflige $5 |4(point,points) de dégâts à un serviteur. Si c’est un démon allié, lui donne +5/+5 à la place.', NULL, NULL, 5, 'Kerem Beyit', NULL, 3, 9, 3, NULL, 4, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/GVG_019.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/GVG_019_premium.gif'),
 (652, 'Druide du Croc', '<b>Cri de guerre :</b> si vous avez une Bête, transforme ce serviteur en une carte 7/7.', 4, 4, 5, 'Brandon Kitkouski', NULL, 6, 9, 1, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/GVG_080.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/GVG_080_premium.gif');
-INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
+INSERT INTO `Card` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
 (653, 'Engin de siège', 'Chaque fois que vous gagnez de l’Armure, donne +1 ATQ à ce serviteur.', 5, 5, 5, 'Zero Yue', NULL, 9, 9, 1, 6, 3, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/GVG_086.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/GVG_086_premium.gif'),
 (654, 'Gardien de cobalt', 'Chaque fois que vous invoquez un Méca, gagne <b>Bouclier divin</b>.', 6, 3, 5, 'Jim Nelson', NULL, 2, 9, 1, 6, 3, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/GVG_062.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/GVG_062_premium.gif'),
 (655, 'Guetteur flottant', 'Chaque fois que votre héros subit des dégâts pendant votre tour,\\ngagne +2/+2.', 4, 4, 5, 'Todd Lockwood', NULL, 3, 9, 1, 4, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/GVG_100.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/GVG_100_premium.gif'),
@@ -931,7 +931,7 @@ INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `a
 (808, 'Marteau chargé', '<b>Râle d’agonie :</b> votre pouvoir héroïque devient « Inflige 2 points de dégâts ».', 2, NULL, 4, 'Peet Cooper', 4, 8, 11, 2, NULL, 4, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/AT_050.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/AT_050_premium.gif'),
 (809, 'Médecin du tournoi', '<b>Exaltation :</b> rend 2 PV à votre héros.', 1, 8, 4, 'Sean McNally', NULL, 10, 11, 1, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/AT_091.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/AT_091_premium.gif'),
 (810, 'Poing de Jaraxxus', 'Quand vous jouez ou que vous vous défaussez de cette carte, inflige $4 |4(point,points) de dégâts à un adversaire aléatoire.', NULL, NULL, 4, 'Matt Dixon', NULL, 3, 11, 3, NULL, 3, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/AT_022.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/AT_022_premium.gif');
-INSERT INTO `CARD` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
+INSERT INTO `Card` (`idCard`, `name`, `text`, `attack`, `health`, `manaCost`, `artist`, `durability`, `idRefClass`, `idRefCardsSet`, `idRefType`, `idRefRace`, `idRefRarity`, `img`, `imgGold`) VALUES
 (811, 'Provocateur maléfique', '<b>Provocation</b>', 5, 4, 4, 'Dan Scott', NULL, 10, 11, 1, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/AT_114.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/AT_114_premium.gif'),
 (812, 'Rejeton des Ombres', '<b>Exaltation :</b> inflige 4 points de dégâts à chaque héros.', 5, 4, 4, 'Dave Allsop', NULL, 5, 11, 1, NULL, 3, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/AT_012.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/AT_012_premium.gif'),
 (813, 'Vendeur de rafraîchissements', '<b>Cri de guerre :</b> rend 4 PV à chaque héros.', 3, 5, 4, 'Ron Spears', NULL, 10, 11, 1, NULL, 2, 'http://wow.zamimg.com/images/hearthstone/cards/frfr/original/AT_111.png', 'http://wow.zamimg.com/images/hearthstone/cards/frfr/animated/AT_111_premium.gif'),
@@ -1169,9 +1169,13 @@ CREATE TABLE `Lesson` (
 --
 
 INSERT INTO `Lesson` (`idLesson`, `numberLesson`, `text`, `img`) VALUES
-(1, 1, 'Here’s an example. On the image above, there are two minions on the opposing side. The left one is a minion with 1 mana cost, 2 Attack and 1 Health. The right one is a minion with 3 mana cost, 2 Attack, 2 Health, Stealth, and Divine Shield. On my side, there are two minions, the left one is a minion with 3 mana cost, 3 Attack and 3 Health, and the right one is a minion from my Hero Power effect with 1 Attack and 1 Health. To make things easier to read, I will write a minion’s with this format: [Mana Attack/Health]. So, 3 3/3 means a minion costs 3 mana, has 3 attack and 3 health.', 'https://imballinst.files.wordpress.com/2017/02/hearthstone-screenshot-12-21-15-20-32-54.png?w=1100'),
-(2, 2, 'Don’t bet the farm against a Mage with secrets in play.\r\n\r\nPro Hearthstone player Thijs Moldendijk lived out a moment many virtual cardsharks are familiar with when he dumped a series of power-ups onto a Tirion Fordring, going straight for the face of Pavel Beltukov. Thijs knew he had a secret in play, which could have been anything from an Ice Block to a Mirror Entity.', 'https://i.kinja-img.com/gawker-media/image/upload/s--4zv49Kd---/c_scale,fl_progressive,q_80,w_800/cdvgfurwv9plg0u09dpt.png'),
-(3, 3, 'Pour réussir cette quête, il faut essayer d\'avoir les carte qui permettent de mettre vos serviteurs dans votre main.', 'http://www.pockettactics.com/assets/BlogPosts/_resampled/ScaleWidthWzExNDBd/FillWzExNDAsNjAwXQ/HHeader.jpg');
+(1, 1, 'Avant de créer un deck, vous devez choisir une classe. Il existe actuellement 9 classes différentes ayant chacune leurs particularités. Ces 9 classes sont : Chaman, Chasseur, Démoniste, Druide, Guerrier, Mage, Paladin, Prêtre et Voleur. Toutes les classes ont 30PV de base. Chaque classe se démarque par un pouvoir héroïque qui lui est propre, c\'est-à-dire une compétence que vous pouvez utiliser au cours d\'une partie. Les points communs entre tous les pouvoirs héroïques sont qu\'ils ne coûtent que 2 cristaux de mana à l\'utilisation et qu\'ils ne peuvent être utilisés qu\'une seule fois par tour.', 'http://static.mnium.org/images/contenu/actus/HearthStone/Template/hearthstone_classes.jpg'),
+(3, 2, 'Lorsque vous créez un deck, vous êtes limité à 30 cartes. Toute les cartes ont pour caractéristique commune un coût en mana, c\'est-à-dire le nombre de cristaux de mana nécessaires pour pouvoir jouer cette carte. Cependant, il existe 3 types de cartes différents : - Les serviteurs : Ce sont les créatures que vous invoquez pour vous aider à gagner la partie. Un serviteur possède un nombre de points d\'attaque, c\'est-à-dire les dégâts qu\'il inflige quand il attaque et un nombre de points de vie, c\'est-à-dire le nombre de dégâts qu\'il doit subir pour mourir. Certains serviteurs possèdent aussi un effet qui s\'active de base ou qui ne s\'active que dans certaines situations ou sous certaines conditions. - Les sorts : Ces cartes ont des effets pouvant être divers et variés. Un sort peut permettre de faire apparaître un serviteur comme en renforcer un ou encore infliger des dégâts. On trouve dans certaines classes des sorts un peu spéciaux que l\'on nomme \"secret\". Ces sorts, au lieu de s\'activer directement, se posent sur votre héros et ne s\'activeront que durant le tour de l\'adversaire s\'il effectue l\'action permettant d\'activer le secret joué. - Les armes : Ce sont des cartes spéciales dont votre héros peut s\'équiper. Une arme possède un nombre de points d\'attaque, c\'est-à-dire les dégâts qu\'elle inflige et un score de durabilité, c\'est-à-dire le nombre de fois que vous pouvez frapper avec. Une fois équipé d\'une arme, votre héros obtient un score d\'attaque correspondant au score d\'attaque de l\'arme, ce qui lui permet d\'attaquer directement. Attention, ce score d\'attaque n\'est valable que pendant votre tour car durant le tour adverse, une arme équipée devient inactive. De plus, vous ne pouvez attaquer qu\'une seule fois avec votre héros. Enfin, comme pour les serviteurs, certaines armes peuvent avoir un effet. Un autre élément sépare les cartes en deux catégories : les cartes de classe et les cartes neutres. Une carte de classe est une carte qui ne peut être jouée que par une classe précise alors qu\'une carte neutre peut être jouée par n\'importe quelle classe. Dans la catégorie des cartes neutres, on ne retrouve que des serviteurs et donc les armes et les sorts sont forcément des cartes de classe.', 'http://static.mnium.org/images/contenu/actus/HearthStone/Template/hearthstone_classes.jpg'),
+(4, 3, 'Les cristaux de mana sont votre ressource tout au long d\'une partie. Lors de votre premier tour, vous obtenez un cristal de mana et à chaque tour vous obtiendrez un cristal de mana supplémentaire jusqu\'à atteindre les 10 cristaux de mana qui représentent le maximum possible. En d\'autres termes, tour 1 vous avez 1 de mana, tour 2 vous en avez 2 et ainsi de suite jusqu\'au tour 10 et plus où vous aurez 10 de mana. De plus, à chaque tour, tous vos cristaux de mana se rechargeront, que vous ayez consommé tout votre mana au tour précédent ou non. Notez que si vous terminez un tour sans avoir utilisé tout votre mana, celui-ci sera gâché et ne sera pas récupérable au tour suivant. Il vous faudra donc vite apprendre à bien gérer votre mana pour optimiser au mieux sa consommation lors de chaque tour.', 'http://static.mnium.org/images/contenu/actus/HearthStone/Hearthstone_Mana.png'),
+(5, 4, 'Toutes vos parties commenceront toujours par cette phase très importante qu\'est le mulligan. Il consiste à conserver ou relancer les cartes qui vous sont proposées. Un détail important est que selon si vous jouez premier ou second, votre nombre de cartes lors du mulligan ne sera pas le même. Si vous jouez en premier, vous aurez 3 cartes alors que si vous jouez en second, vous aurez 4 cartes. Mais du coup, comment savoir si vous devez conserver une carte ou la relancer ? Et bien l\'idée de base est d\'essayer d\'avoir des cartes à jouer dès le début pour éviter de laisser l\'adversaire prendre l\'avantage. Vous allez donc chercher à récupérer des serviteurs coûtant 1 à 3 de mana voire 4 mana. Après, les cartes que vous allez chercher vont vraiment dépendre du deck que vous jouez et de la classe que joue l\'adversaire qui peut être un indice sur le deck qu\'il joue. Ce moment peut paraître anecdotique mais au contraire, certaines parties se gagnent juste sur votre mulligan qui a été plus favorable que celui de l\'adversaire.', 'http://static.mnium.org/images/contenu/actus/HearthStone/Hearthstone_Mulligan_2.png'),
+(6, 5, 'Maintenant que vous avez votre main de départ, nous allons pouvoir commencer à utiliser vos cartes. Lorsque vous invoquez un serviteur, celui-ci arrivera sur ce que l\'on appelle le board. Celui-ci se divise en deux parties : votre côté et celui de l\'adversaire. Tous les serviteurs que vous poserez iront sur votre côté du board et ceux que votre adversaire posera iront de son côté. Ainsi, vous et vos serviteurs feront face aux serviteurs et au héros adverses. Notez que vous ne pouvez avoir que 7 serviteurs en même temps de votre côté du board. Dans le cas où vous avez 7 serviteurs, vous êtes dans l\'incapacité de jouer un serviteur supplémentaire. Lorsqu\'un serviteur arrive sur le board, il souffre de ce que l\'on appelle le \"mal d\'invocation\" c\'est-à-dire qu\'il ne peut pas attaquer directement. En effet, il vous faudra attendre le tour suivant pour pouvoir attaquer avec. Notez qu\'un serviteur ayant 0 d\'attaque ne peut pas attaquer même pour infliger 0 de dégâts (cela est aussi valable pour une arme à 0 d\'attaque). Enfin, lorsque les points de vie d\'un serviteur tombent à 0, celui-ci meurt et disparaît du board.', 'http://static.mnium.org/images/contenu/actus/HearthStone/Template/hearthstone_board.jpg'),
+(7, 6, 'Lorsque c\'est votre tour de jouer, il y a plusieurs éléments et informations qui sont présents et qu\'il faut comprendre et analyser. Tout d\'abord, vous pouvez trouver un historique des actions à gauche du board. Cet historique rappelle seulement les quelques dernières actions et non la totalité de la partie. Ensuite, vous trouverez le bouton \"Fin de tour\" à droite du board qui permet de mettre fin à votre tour actuel. Notez que sur Hearthstone vos tours sont limités en temps et que vous n\'avez qu\'un peu plus d\'une minute pour réfléchir et effectuer vos actions. Quand il ne vous reste plus que 15 secondes, une mèche apparaît et elle commence à se consumer petit à petit et une fois consumée entièrement, votre tour s\'arrête automatiquement et le tour adverse qui commence. Enfin, veillez à toujours surveiller le nombre de cartes que vous avez en main car vous ne pouvez pas avoir plus de 10 cartes en main. Si vous piochez alors que vous avez 10 cartes en main, votre carte se \"brûlera\", c\'est-à-dire sera détruite sans aucune autre forme de procès. De même, si vous avez 10 cartes en main et que votre adversaire remet un de vos serviteurs dans votre main, il sera détruit à la place. En regardant votre main de plus près, vous pouvez voir des éléments vous informant de vos possibilités d\'action. En effet, vos cartes peuvent être entourées d\'une lueur verte ou jaune ce qui a une signification précise. Si une carte est entourée d\'une lueur verte, cela signifie que vous pouvez la jouer. Si c\'est une lueur jaune, cela signifie que la carte a un effet qui ne se déclenche que sous certaines conditions et que ces conditions sont réunies. S\'il n\'y a aucune lueur autour de la carte, c\'est que vous ne pouvez pas jouer cette carte pour l\'instant. Par exemple, si un Agent du SI:7 est entouré de jaune, il infligera 2 points de dégât quand vous le poserez, s\'il est entouré de vert, vous pouvez le poser mais il n\'infligera pas ses 2 points de dégât et s\'il n\'est entouré d\'aucune lueur, vous ne pouvez pas le jouer. Ce système de lueur verte se retrouve aussi avec le pouvoir héroïque quand il est utilisable et les serviteurs sur le board quand ils peuvent attaquer.', 'http://static.mnium.org/images/contenu/actus/HearthStone/Template/hearthstone_main.jpg'),
+(8, 7, 'Au fur et à mesure que la partie avance, vous piochez vos cartes et arrive le moment où vous n\'aurez plus de cartes. Dans ce cas là, vous arrivez à ce que l\'on appelle l\'état de \"fatigue\", c\'est-à-dire que lorsque vous êtes censé piocher une carte, vous piocherez une carte de fatigue qui vous infligera des dégâts. Les dégâts de fatigue augmenteront petit à petit en même temps que vous piocherez des cartes de fatigue. La première vous infligera 1 point de dégât, la deuxième vous en infligera 2 et ainsi de suite. Vous comprendrez donc que piocher lors d\'une partie permet d\'avoir plus de cartes en main, mais vous rapproche plus rapidement de la fatigue.', 'http://img.youtube.com/vi/2_danfYZn9A/maxresdefault.jpg');
 
 -- --------------------------------------------------------
 
@@ -1197,8 +1201,9 @@ CREATE TABLE `Person` (
 
 INSERT INTO `Person` (`idPerson`, `firstname`, `lastname`, `nbGoodAnswer`, `nbQuestionAnswered`, `idRefRole`, `username`, `password`, `mail`) VALUES
 (1, 'Admin', 'Admin', 0, 0, 2, 'Admin', 'niku', 'Admin.niku@learnstone.com'),
-(2, 'Louis', 'Mantopoulos', 0, 2, 1, 'MrFrizz', 'MrFrizz', 'MrFrizz@salut.com'),
-(3, 'William', 'Morgado', 0, 0, 1, 'Neji', 'Neji', 'Neji@gmail.com');
+(2, 'Louis', 'Mantopoulos', 8, 12, 1, 'MrFrizz', 'MrFrizz', 'MrFrizz@salut.com'),
+(3, 'William', 'Morgado', 0, 0, 1, 'Neji', 'Neji', 'Neji@gmail.com'),
+(4, 'Steven', 'Kponou-Johnson', 0, 0, 2, 'Steven', 'Steven', 'Steven@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -1218,19 +1223,32 @@ CREATE TABLE `PersonLesson` (
 --
 
 INSERT INTO `PersonLesson` (`idPersonLesson`, `idPerson`, `idLesson`, `dateRead`) VALUES
-(2, 2, 1, '2017-07-23 18:37:47'),
-(3, 2, 2, '2017-07-23 18:37:50'),
-(4, 2, 3, '2017-07-23 18:37:52'),
-(5, 2, 2, '2017-07-23 18:38:45'),
-(6, 2, 1, '2017-07-23 18:38:46'),
-(7, 2, 1, '2017-07-23 18:40:35'),
-(8, 2, 1, '2017-07-23 18:40:37'),
-(9, 2, 2, '2017-07-23 18:40:41'),
-(10, 2, 1, '2017-07-23 18:40:43'),
-(11, 2, 2, '2017-07-23 18:40:45'),
-(12, 2, 3, '2017-07-23 18:40:46'),
-(13, 2, 2, '2017-07-23 18:40:49'),
-(14, 2, 1, '2017-07-23 18:40:50');
+(2, 2, 1, '2017-07-24 00:18:17'),
+(6, 2, 1, '2017-07-24 00:19:50'),
+(7, 2, 1, '2017-07-24 00:22:16'),
+(9, 2, 1, '2017-07-24 00:23:46'),
+(11, 2, 1, '2017-07-24 00:25:24'),
+(13, 2, 1, '2017-07-24 18:36:20'),
+(15, 2, 3, '2017-07-24 18:36:38'),
+(16, 2, 4, '2017-07-24 18:36:42'),
+(17, 2, 5, '2017-07-24 18:36:46'),
+(18, 2, 6, '2017-07-24 18:36:49'),
+(19, 2, 7, '2017-07-24 18:36:54'),
+(20, 2, 6, '2017-07-24 18:39:19'),
+(21, 2, 7, '2017-07-24 18:39:21'),
+(22, 2, 6, '2017-07-24 18:39:27'),
+(23, 2, 5, '2017-07-24 18:39:32'),
+(24, 2, 4, '2017-07-24 18:39:56'),
+(25, 2, 3, '2017-07-24 18:40:01'),
+(27, 2, 1, '2017-07-24 18:40:05'),
+(29, 2, 3, '2017-07-24 18:40:08'),
+(30, 2, 4, '2017-07-24 18:40:08'),
+(31, 2, 3, '2017-07-24 21:27:00'),
+(33, 2, 1, '2017-07-24 21:27:03'),
+(35, 2, 1, '2017-07-24 21:27:08'),
+(37, 2, 3, '2017-07-24 21:27:11'),
+(38, 2, 4, '2017-07-24 21:27:12'),
+(39, 2, 3, '2017-07-24 21:27:17');
 
 -- --------------------------------------------------------
 
@@ -1359,7 +1377,17 @@ INSERT INTO `QuestionAnswered` (`idQuestionAnswered`, `idPerson`, `idQuestion`, 
 (73, 2, 13, 0, '2017-07-23 19:03:18'),
 (74, 2, 11, 0, '2017-07-23 19:03:18'),
 (75, 2, 13, 0, '2017-07-23 19:05:20'),
-(76, 2, 7, 0, '2017-07-23 19:05:28');
+(76, 2, 7, 0, '2017-07-23 19:05:28'),
+(77, 2, 9, 1, '2017-07-24 00:27:03'),
+(78, 2, 1, 1, '2017-07-24 00:27:03'),
+(79, 2, 9, 1, '2017-07-24 00:27:04'),
+(80, 2, 13, 0, '2017-07-24 00:27:04'),
+(81, 2, 3, 1, '2017-07-24 00:29:03'),
+(82, 2, 1, 1, '2017-07-24 00:29:04'),
+(83, 2, 3, 1, '2017-07-24 00:29:09'),
+(84, 2, 13, 1, '2017-07-24 00:29:11'),
+(85, 2, 11, 1, '2017-07-24 00:29:23'),
+(86, 2, 12, 0, '2017-07-24 00:29:26');
 
 -- --------------------------------------------------------
 
@@ -1381,8 +1409,6 @@ INSERT INTO `RefCardsSet` (`idRefCardsSet`, `lblCardsSet`) VALUES
 (2, 'Classic'),
 (3, 'Whispers of the Old Gods'),
 (4, 'One Night in Karazhan'),
-(5, 'Mean Streets of Gadgetzan'),
-(6, 'Journey to Un\'Goro'),
 (7, 'Hall of Fame'),
 (8, 'Naxxramas'),
 (9, 'Goblins vs Gnomes'),
@@ -1516,9 +1542,9 @@ ALTER TABLE `Answer`
   ADD KEY `FK_Answer_Question` (`idQuestion`);
 
 --
--- Index pour la table `CARD`
+-- Index pour la table `Card`
 --
-ALTER TABLE `CARD`
+ALTER TABLE `Card`
   ADD PRIMARY KEY (`idCard`),
   ADD KEY `FK_Card_RefClass` (`idRefClass`),
   ADD KEY `FK_Card_RefCardsSet` (`idRefCardsSet`),
@@ -1613,9 +1639,9 @@ ALTER TABLE `RefType`
 ALTER TABLE `Answer`
   MODIFY `idAnswer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
--- AUTO_INCREMENT pour la table `CARD`
+-- AUTO_INCREMENT pour la table `Card`
 --
-ALTER TABLE `CARD`
+ALTER TABLE `Card`
   MODIFY `idCard` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=932;
 --
 -- AUTO_INCREMENT pour la table `Definition`
@@ -1626,17 +1652,17 @@ ALTER TABLE `Definition`
 -- AUTO_INCREMENT pour la table `Lesson`
 --
 ALTER TABLE `Lesson`
-  MODIFY `idLesson` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idLesson` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `Person`
 --
 ALTER TABLE `Person`
-  MODIFY `idPerson` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idPerson` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `PersonLesson`
 --
 ALTER TABLE `PersonLesson`
-  MODIFY `idPersonLesson` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idPersonLesson` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT pour la table `Question`
 --
@@ -1646,7 +1672,7 @@ ALTER TABLE `Question`
 -- AUTO_INCREMENT pour la table `QuestionAnswered`
 --
 ALTER TABLE `QuestionAnswered`
-  MODIFY `idQuestionAnswered` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `idQuestionAnswered` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT pour la table `RefCardsSet`
 --
@@ -1688,9 +1714,9 @@ ALTER TABLE `Answer`
   ADD CONSTRAINT `FK_Answer_Question` FOREIGN KEY (`idQuestion`) REFERENCES `Question` (`idQuestion`);
 
 --
--- Contraintes pour la table `CARD`
+-- Contraintes pour la table `Card`
 --
-ALTER TABLE `CARD`
+ALTER TABLE `Card`
   ADD CONSTRAINT `FK_Card_RefCardsSet` FOREIGN KEY (`idRefCardsSet`) REFERENCES `RefCardsSet` (`idRefCardsSet`),
   ADD CONSTRAINT `FK_Card_RefClass` FOREIGN KEY (`idRefClass`) REFERENCES `RefClass` (`idRefClass`),
   ADD CONSTRAINT `FK_Card_RefRace` FOREIGN KEY (`idRefRace`) REFERENCES `RefRace` (`idRefRace`),
