@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="learnstone_high@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="learnstone_high">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="database_dev_librasize_me"/>
+    <schema id="4" parent="1" name="information_schema"/>
+    <schema id="5" parent="1" name="learnstone"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="performance_schema"/>
+    <schema id="8" parent="1" name="projet_test"/>
+    <schema id="9" parent="1" name="sys"/>
+    <table id="10" parent="2" name="answer"/>
+    <table id="11" parent="2" name="card"/>
+    <table id="12" parent="2" name="cardkeyword"/>
+    <table id="13" parent="2" name="definition"/>
+    <table id="14" parent="2" name="keyword"/>
+    <table id="15" parent="2" name="lesson"/>
+    <table id="16" parent="2" name="person"/>
+    <table id="17" parent="2" name="personlesson"/>
+    <table id="18" parent="2" name="question"/>
+    <table id="19" parent="2" name="questionanswered"/>
+    <table id="20" parent="2" name="refcardsset"/>
+    <table id="21" parent="2" name="refclass"/>
+    <table id="22" parent="2" name="refrace"/>
+    <table id="23" parent="2" name="refrarity"/>
+    <table id="24" parent="2" name="refrole"/>
+    <table id="25" parent="2" name="reftype"/>
+    <column id="26" parent="10" name="idAnswer">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="27" parent="10" name="answerText">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="10" name="isCorrectAnswer">
+      <Position>3</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="10" name="idQuestion">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="30" parent="10" name="FK_Answer_Question">
+      <ColNames>idQuestion</ColNames>
+    </index>
+    <key id="31" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idAnswer</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="32" parent="10" name="FK_Answer_Question">
+      <ColNames>idQuestion</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>question</RefTableName>
+      <RefColNames>idQuestion</RefColNames>
+    </foreign-key>
+    <column id="33" parent="11" name="idCard">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="34" parent="11" name="name">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="11" name="text">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="36" parent="11" name="attack">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="37" parent="11" name="health">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="38" parent="11" name="manaCost">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="39" parent="11" name="artist">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="40" parent="11" name="durability">
+      <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="41" parent="11" name="idRefClass">
+      <Position>9</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="42" parent="11" name="idRefCardsSet">
+      <Position>10</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="11" name="idRefType">
+      <Position>11</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="44" parent="11" name="idRefRace">
+      <Position>12</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="45" parent="11" name="idRefRarity">
+      <Position>13</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="11" name="img">
+      <Position>14</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="47" parent="11" name="imgGold">
+      <Position>15</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <index id="48" parent="11" name="FK_Card_RefCardsSet">
+      <ColNames>idRefCardsSet</ColNames>
+    </index>
+    <index id="49" parent="11" name="FK_Card_RefClass">
+      <ColNames>idRefClass</ColNames>
+    </index>
+    <index id="50" parent="11" name="FK_Card_RefRace">
+      <ColNames>idRefRace</ColNames>
+    </index>
+    <index id="51" parent="11" name="FK_Card_RefRarity">
+      <ColNames>idRefRarity</ColNames>
+    </index>
+    <index id="52" parent="11" name="FK_Card_RefType">
+      <ColNames>idRefType</ColNames>
+    </index>
+    <key id="53" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idCard</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="54" parent="11" name="FK_Card_RefClass">
+      <ColNames>idRefClass</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>refclass</RefTableName>
+      <RefColNames>idRefClass</RefColNames>
+    </foreign-key>
+    <foreign-key id="55" parent="11" name="FK_Card_RefCardsSet">
+      <ColNames>idRefCardsSet</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>refcardsset</RefTableName>
+      <RefColNames>idRefCardsSet</RefColNames>
+    </foreign-key>
+    <foreign-key id="56" parent="11" name="FK_Card_RefType">
+      <ColNames>idRefType</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>reftype</RefTableName>
+      <RefColNames>idRefType</RefColNames>
+    </foreign-key>
+    <foreign-key id="57" parent="11" name="FK_Card_RefRace">
+      <ColNames>idRefRace</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>refrace</RefTableName>
+      <RefColNames>idRefRace</RefColNames>
+    </foreign-key>
+    <foreign-key id="58" parent="11" name="FK_Card_RefRarity">
+      <ColNames>idRefRarity</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>refrarity</RefTableName>
+      <RefColNames>idRefRarity</RefColNames>
+    </foreign-key>
+    <column id="59" parent="12" name="idRefCardKeyWord">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="60" parent="12" name="idKeyWord">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="61" parent="12" name="idCard">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="62" parent="12" name="FK_CardKeyWord_Card">
+      <ColNames>idCard</ColNames>
+    </index>
+    <index id="63" parent="12" name="FK_CardKeyWord_KeyWord">
+      <ColNames>idKeyWord</ColNames>
+    </index>
+    <key id="64" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idRefCardKeyWord</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="65" parent="12" name="FK_CardKeyWord_KeyWord">
+      <ColNames>idKeyWord</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>keyword</RefTableName>
+      <RefColNames>idKeyWord</RefColNames>
+    </foreign-key>
+    <foreign-key id="66" parent="12" name="FK_CardKeyWord_Card">
+      <ColNames>idCard</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>card</RefTableName>
+      <RefColNames>idCard</RefColNames>
+    </foreign-key>
+    <column id="67" parent="13" name="idDefinition">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="68" parent="13" name="word">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="13" name="wordText">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="70" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idDefinition</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="71" parent="14" name="idKeyWord">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="72" parent="14" name="lblKeyWord">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="73" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idKeyWord</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="74" parent="15" name="idLesson">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="75" parent="15" name="numberLesson">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="76" parent="15" name="text">
+      <Position>3</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="77" parent="15" name="img">
+      <Position>4</Position>
+      <DataType>varchar(2048)|0</DataType>
+    </column>
+    <key id="78" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idLesson</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="79" parent="16" name="idPerson">
+      <Position>1</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="80" parent="16" name="firstname">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="81" parent="16" name="lastname">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="82" parent="16" name="nbGoodAnswer">
+      <Position>4</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="83" parent="16" name="nbQuestionAnswered">
+      <Position>5</Position>
+      <DataType>int(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="16" name="idRefRole">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="85" parent="16" name="username">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="86" parent="16" name="password">
+      <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="87" parent="16" name="mail">
+      <Position>9</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="88" parent="16" name="FK_Person_RefRole">
+      <ColNames>idRefRole</ColNames>
+    </index>
+    <key id="89" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idPerson</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="90" parent="16" name="FK_Person_RefRole">
+      <ColNames>idRefRole</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>refrole</RefTableName>
+      <RefColNames>idRefRole</RefColNames>
+    </foreign-key>
+    <column id="91" parent="17" name="idPersonLesson">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="92" parent="17" name="idPerson">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="93" parent="17" name="idLesson">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="94" parent="17" name="dateRead">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="95" parent="17" name="FK_PersonLesson_Lesson">
+      <ColNames>idLesson</ColNames>
+    </index>
+    <index id="96" parent="17" name="FK_PersonLesson_Person">
+      <ColNames>idPerson</ColNames>
+    </index>
+    <key id="97" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idPersonLesson</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="98" parent="17" name="FK_PersonLesson_Person">
+      <ColNames>idPerson</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>person</RefTableName>
+      <RefColNames>idPerson</RefColNames>
+    </foreign-key>
+    <foreign-key id="99" parent="17" name="FK_PersonLesson_Lesson">
+      <ColNames>idLesson</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>lesson</RefTableName>
+      <RefColNames>idLesson</RefColNames>
+    </foreign-key>
+    <column id="100" parent="18" name="idQuestion">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="101" parent="18" name="questionText">
+      <Position>2</Position>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="102" parent="18" name="nbUse">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="103" parent="18" name="nbResult">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="104" parent="18" name="img">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="105" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idQuestion</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="106" parent="19" name="idQuestionAnswered">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="107" parent="19" name="idPerson">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="108" parent="19" name="idQuestion">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="109" parent="19" name="isAnswerWell">
+      <Position>4</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="110" parent="19" name="dateAnswered">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="111" parent="19" name="FK_QuestionAnswered_Person">
+      <ColNames>idPerson</ColNames>
+    </index>
+    <index id="112" parent="19" name="FK_QuestionAnswered_Question">
+      <ColNames>idQuestion</ColNames>
+    </index>
+    <key id="113" parent="19" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idQuestionAnswered</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="114" parent="19" name="FK_QuestionAnswered_Person">
+      <ColNames>idPerson</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>person</RefTableName>
+      <RefColNames>idPerson</RefColNames>
+    </foreign-key>
+    <foreign-key id="115" parent="19" name="FK_QuestionAnswered_Question">
+      <ColNames>idQuestion</ColNames>
+      <RefSchemaName>learnstone_high</RefSchemaName>
+      <RefTableName>question</RefTableName>
+      <RefColNames>idQuestion</RefColNames>
+    </foreign-key>
+    <column id="116" parent="20" name="idRefCardsSet">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="117" parent="20" name="lblCardsSet">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="118" parent="20" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idRefCardsSet</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="119" parent="21" name="idRefClass">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="120" parent="21" name="lblClass">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="121" parent="21" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idRefClass</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="122" parent="22" name="idRefRace">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="123" parent="22" name="lblRace">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="124" parent="22" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idRefRace</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="125" parent="23" name="idRefRarity">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="126" parent="23" name="lblRarity">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="127" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idRefRarity</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="128" parent="24" name="idRefRole">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="129" parent="24" name="lblRole">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="130" parent="24" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idRefRole</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="131" parent="25" name="idRefType">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="132" parent="25" name="lblType">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="133" parent="25" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idRefType</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

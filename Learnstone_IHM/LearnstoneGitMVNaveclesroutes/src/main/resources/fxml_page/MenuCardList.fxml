@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane id="mainBorderPane" fx:id="borderPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="1020.0" prefWidth="1920.0" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MenuCardListController">
+   <effect>
+      <InnerShadow />
+   </effect>
+   <bottom>
+      <AnchorPane id="bottombarmenu" prefHeight="48.0" prefWidth="1920.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <top>
+      <AnchorPane id="anchorPaneTop" prefHeight="108.0" prefWidth="1926.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="104.0" fitWidth="112.0" layoutX="-2.0" layoutY="-21.0" pickOnBounds="true" styleClass="button" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
+               <image>
+                  <Image url="@../images/unnamed.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label id="labelTopUserName" fx:id="labelTopUsername" ellipsisString="" layoutX="127.0" layoutY="5.0" prefHeight="108.0" prefWidth="822.0" text="&lt;PLAYERNAME&gt;" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="978.0" AnchorPane.topAnchor="0.0" />
+            <Button fx:id="buttonDeconnexion" mnemonicParsing="false" prefHeight="36.0" prefWidth="167.0" text="Se déconnecter" textFill="WHITE" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="35.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label fx:id="labelIdUser" text="Id_User" textFill="WHITE" visible="false" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane id="anchorPaneMiddle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="864.0" prefWidth="1658.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="-1.0" layoutY="5.0" prefHeight="864.0" prefWidth="1654.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane prefHeight="88.0" prefWidth="1645.0">
+                     <children>
+                        <Label id="labelTitlePage" alignment="CENTER" layoutX="804.0" layoutY="34.0" prefHeight="88.0" prefWidth="1643.0" text="LISTE DES CARTES" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="buttonNextList" ellipsisString="" layoutX="1551.0" layoutY="26.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="87.0" text="&gt;&gt;" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="buttonPreviousList" ellipsisString="" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="87.0" text="&lt;&lt;" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label alignment="CENTER" disable="true" layoutX="132.0" prefHeight="88.0" prefWidth="273.0" text="Nombre de carte affichable par page" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ComboBox fx:id="comboboxMaxCardByPage" disable="true" layoutX="413.0" layoutY="16.0" prefHeight="50.0" prefWidth="83.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="546.0" layoutY="10.0" prefHeight="76.0" prefWidth="77.0" text="Rareté" textAlignment="RIGHT" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <ComboBox fx:id="comboboxRarity" layoutX="617.0" layoutY="10.0" prefHeight="50.0" prefWidth="211.0" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <Label alignment="CENTER" layoutX="14.0" layoutY="10.0" prefHeight="57.0" prefWidth="114.0" text="Nom de la carte" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <TextField fx:id="textFieldNameCard" layoutX="135.0" layoutY="10.0" prefHeight="57.0" prefWidth="202.0" promptText="Ben Brode" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <Label alignment="CENTER" layoutX="343.0" layoutY="4.0" prefHeight="77.0" prefWidth="100.0" text="Coût en mana" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <TextField fx:id="textfieldManaCost" layoutX="450.0" layoutY="13.0" prefHeight="56.0" prefWidth="97.0" promptText="0" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <Button fx:id="buttonFilter" ellipsisString="" layoutX="1140.0" layoutY="20.0" mnemonicParsing="false" onAction="#searchCardWithFilter" prefHeight="58.0" prefWidth="100.0" text="OK" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label id="labelOnButton" fx:id="labelCardNotFound" alignment="CENTER" layoutX="1252.0" layoutY="-2.0" prefHeight="97.0" prefWidth="380.0" text="Aucune carte trouvé" textFill="RED" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="-2.0" />
+                        <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="833.0" layoutY="10.0" prefHeight="76.0" prefWidth="59.0" text="Classe" textAlignment="RIGHT" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <ComboBox fx:id="comboboxClass" layoutX="892.0" layoutY="10.0" prefHeight="50.0" prefWidth="211.0" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <ScrollPane id="scrollPaneMiddle" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="1652.0" VBox.vgrow="SOMETIMES">
+                     <effect>
+                        <Reflection />
+                     </effect>
+                     <content>
+                        <GridPane fx:id="gridpaneListCard" prefHeight="117.0" prefWidth="1603.0" scaleShape="false" vgap="10.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                           <opaqueInsets>
+                              <Insets right="200.0" />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="2.0" top="5.0" />
+                           </padding>
+                           <rowConstraints>
+                              <RowConstraints />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+   </center>
+   <left>
+      <AnchorPane id="anchorPaneLeft" prefHeight="1200.0" prefWidth="266.0" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane layoutX="5.0" layoutY="56.0" prefHeight="864.0" prefWidth="266.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <content>
+                  <VBox id="vboxMenuLeft" fx:id="vboxLeft" prefHeight="805.0" prefWidth="258.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <AnchorPane prefHeight="82.0" prefWidth="244.0">
+                           <children>
+                              <Label id="labelMenuHome" fx:id="labelMenuHome" prefHeight="82.0" prefWidth="258.0" text="Accueil" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="31.0" layoutY="31.0" prefHeight="82.0" prefWidth="244.0">
+                           <children>
+                              <Label id="labelMenuPresentationOfTheGame" fx:id="labelMenuPresentationOfTheGame" prefHeight="82.0" prefWidth="258.0" text="Présentation du jeu" textAlignment="JUSTIFY" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane id="anchorPaneSelected" layoutX="31.0" layoutY="153.0" prefHeight="82.0" prefWidth="244.0">
+                           <children>
+                              <Label id="labelMenuCardList" fx:id="labelMenuCardList" prefHeight="82.0" prefWidth="258.0" text="Cartes" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="31.0" layoutY="275.0" prefHeight="82.0" prefWidth="244.0">
+                           <children>
+                              <Label id="labelMenuLibrary" fx:id="labelMenuLibrary" layoutY="4.0" prefHeight="82.0" prefWidth="258.0" text="Bibliothèque" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="31.0" layoutY="397.0" prefHeight="82.0" prefWidth="244.0">
+                           <children>
+                              <Label id="labelMenuLessons" fx:id="labelMenuLessons" prefHeight="82.0" prefWidth="258.0" text="Leçons" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="31.0" layoutY="519.0" prefHeight="82.0" prefWidth="244.0">
+                           <children>
+                              <Label id="labelMenuQuizz" fx:id="labelMenuQuizz" prefHeight="82.0" prefWidth="258.0" text="Quizz" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="82.0" prefWidth="244.0">
+                           <children>
+                              <Label id="labelMenuStatsOfThePlayer" fx:id="labelMenuStatsOfThePlayer" centerShape="false" layoutY="-8.0" prefHeight="82.0" prefWidth="258.0" text="Statistiques du joueur" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

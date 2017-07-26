@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Class-Path: mysql-connector-java-5.1.6.jar httpclient-4.3.6.jar common
+ s-logging-1.1.3.jar xpp3_min-1.1.4c.jar xstream-1.4.9.jar httpcore-ni
+ o-4.3.2.jar httpmime-4.3.6.jar commons-codec-1.6.jar json-20140107.ja
+ r httpasyncclient-4.0.2.jar httpcore-4.3.3.jar xmlpull-1.1.3.1.jar gs
+ on-2.8.1.jar assertj-core-2.6.0.jar unirest-java-1.4.9.jar
+Main-Class: sample.Main
+
