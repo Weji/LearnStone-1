@@ -3,6 +3,7 @@ var express = require('express');
 var session = require('express-session');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+var async = require('async');
 
 var connection = require("../connection");
 var router = express.Router();
@@ -110,9 +111,24 @@ router.post('/questionLog', function(req, res) {
       };
 
   if(CheckPassword(req,res))
-  connection.query('INSERT INTO QuestionAnswered SET ?', iQuestionAnswered, function(err, result) {
+  async.parallel([
+    function(callback) { connection.query('INSERT INTO QuestionAnswered SET ?', iQuestionAnswered, callback) },
+    function(callback) {
+                          if(req.body.isAnswerWell) {
+                              console.log(req.body.idQuestion)
+                              connection.query('UPDATE Question SET nbUse = nbUse + 1, nbResult = nbResult + 1 ' +
+                              'WHERE idQuestion = ?', req.body.idQuestion, callback)
 
-          SubmitAnswer(err, res, result, 'I');
+                          }
+                          else {
+
+                            connection.query('UPDATE Question SET nbUse = nbUse + 1 ' +
+                            'WHERE idQuestion = ?', req.body.idQuestion, callback)
+
+                          }
+                        }], function(err, result) {
+
+    SubmitAnswer(err, res, result, 'I');
 
   });
 

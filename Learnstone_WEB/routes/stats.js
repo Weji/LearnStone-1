@@ -25,7 +25,7 @@ router.get('/', function(req, res) {
     ], function(err, results) {
 
       if (!check.error(err, res)){
-
+console.log(JSON.stringify(results));
         res.render('stats', { numberBasic: results[0][0][0].numCount, numberAdmin: results[0][0][1].numCount,
           personStat: results[1][0], questionStat: results[2][0] } );
       }

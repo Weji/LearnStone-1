@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
-  database : 'learnstone'
+  database : 'learnstone_high'
 });
 
 connection.connect(function(err){
